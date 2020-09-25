@@ -1,6 +1,6 @@
 {
   "*": {
-    "target": "http://localhost:8080",
+    "target": "https://administrador-unla.herokuapp.com",
     "secure": false,
     "loglevel": "debug"
   }
