@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { Authority } from 'app/shared/constants/authority.constants';
 
 @NgModule({
   imports: [
@@ -10,6 +11,7 @@ import { RouterModule } from '@angular/router';
         loadChildren: () => import('./estudiante-manager/estudiante-management.module').then(m => m.EstudianteManagementModule),
         data: {
           pageTitle: 'Estudiantes',
+          authorities: [Authority.ADMIN],
         },
       },
     ]),

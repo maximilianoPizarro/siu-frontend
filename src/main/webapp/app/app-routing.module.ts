@@ -23,6 +23,9 @@ const LAYOUT_ROUTES = [navbarRoute, ...errorRoute];
         },
         {
           path: 'entities',
+          data: {
+            authorities: [Authority.ADMIN],
+          },
           loadChildren: () => import('./entities/entity.module').then(m => m.UnLaSiuEntityModule),
         },
         {
