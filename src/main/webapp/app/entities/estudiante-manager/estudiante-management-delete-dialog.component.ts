@@ -18,7 +18,7 @@ export class EstudianteManagementDeleteDialogComponent {
     this.activeModal.dismiss();
   }
 
-  confirmDelete(id: string): void {
+  confirmDelete(id: any): void {
     this.estudianteService.delete(id).subscribe(() => {
       this.eventManager.broadcast('estudianteListModification');
       this.activeModal.close();

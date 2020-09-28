@@ -13,7 +13,7 @@ export class EstudianteManagementResolve implements Resolve<IEstudiante> {
   constructor(private service: EstudianteService) {}
 
   resolve(route: ActivatedRouteSnapshot): Observable<IEstudiante> {
-    const id = route.params['login'];
+    const id = route.params['id'];
     if (id) {
       return this.service.find(id);
     }
@@ -30,7 +30,7 @@ export const estudianteManagementRoute: Routes = [
     },
   },
   {
-    path: ':login/view',
+    path: ':id/view',
     component: EstudianteManagementDetailComponent,
     resolve: {
       estudiante: EstudianteManagementResolve,
@@ -44,7 +44,7 @@ export const estudianteManagementRoute: Routes = [
     },
   },
   {
-    path: ':login/edit',
+    path: ':id/edit',
     component: EstudianteManagementUpdateComponent,
     resolve: {
       estudiante: EstudianteManagementResolve,
