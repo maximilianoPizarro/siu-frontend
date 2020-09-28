@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpResponse, HttpHeaders } from '@angular/common/http';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription, combineLatest } from 'rxjs';
-import { ParamMap, Router, Data } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router, Data } from '@angular/router';
 import { JhiEventManager } from 'ng-jhipster';
 
 import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
@@ -28,14 +28,20 @@ export class EstudianteManagementComponent implements OnInit, OnDestroy {
     private estudianteService: EstudianteService,
     private router: Router,
     private eventManager: JhiEventManager,
+    private activatedRoute: ActivatedRoute,
     private modalService: NgbModal
   ) {}
 
   ngOnInit(): void {
+    this.estudianteListSubscription = this.eventManager.subscribe('estudianteListSubscription', () => this.loadAll());
     this.handleNavigation();
   }
 
-  ngOnDestroy(): void {}
+  ngOnDestroy(): void {
+    if (this.estudianteListSubscription) {
+      this.eventManager.destroy(this.estudianteListSubscription);
+    }
+  }
 
   deleteEstudiante(estudiante: Estudiante): void {
     const modalRef = this.modalService.open(EstudianteManagementDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
@@ -52,7 +58,7 @@ export class EstudianteManagementComponent implements OnInit, OnDestroy {
   }
 
   private handleNavigation(): void {
-    combineLatest((data: Data, params: ParamMap) => {
+    combineLatest(this.activatedRoute.data, this.activatedRoute.queryParamMap, (data: Data, params: ParamMap) => {
       const page = params.get('page');
       this.page = page !== null ? +page : 1;
       const sort = (params.get('sort') ?? data['defaultSort']).split(',');

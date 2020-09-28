@@ -3,7 +3,7 @@
         <span id="estudiante-management-page-heading">Estudiantes</span>
 
         <button class="btn btn-primary float-right jh-create-entity" [routerLink]="['./new']">
-            <fa-icon icon="plus"></fa-icon> <span>Create a new Estudiante</span>
+            <fa-icon icon="plus"></fa-icon> <span>Agregar un nuevo Estudiante</span>
         </button>
     </h2>
 
@@ -17,20 +17,21 @@
                 <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="transition.bind(this)">
                     <th scope="col"  jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="nombre"><span>Nombre</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="apellido"><span>Email</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="email"><span>Nombre</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="domicilio"><span>Nombre</span> <fa-icon icon="sort"></fa-icon></th>
-                    
+                    <th scope="col"  jhiSortBy="apellido"><span>Apellido</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="domicilio"><span>Domicilio</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="email"><span>Email</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="telefono"><span>Telefono</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
             <tbody *ngIf="estudiantes">
-                <tr *ngFor="let estudiante of estudiantes; ">
+                <tr *ngFor="let estudiante of estudiantes">
                     <td><a [routerLink]="['./', estudiante.id, 'view']">{{ estudiante.id }}</a></td>
                     <td>{{ estudiante.nombre }}</td>
-                    <td>{{ estudiante.apellido }}</td>
-                    <td>{{ estudiante.email }}</td>
+                    <td>{{ estudiante.apellido }}</td>                    
                     <td>{{ estudiante.domicilio }}</td>                    
+                    <td>{{ estudiante.email }}</td>
+                    <td>{{ estudiante.telefono }}</td>
                     <td class="text-right">
                         <div class="btn-group">
                             <button type="submit"
