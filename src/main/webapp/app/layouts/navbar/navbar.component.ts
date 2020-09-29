@@ -8,6 +8,7 @@ import { LoginService } from 'app/core/login/login.service';
 import { ProfileService } from 'app/layouts/profiles/profile.service';
 
 import { EstudianteService } from 'app/core/estudiante/estudiante.service';
+import { ProfesorService } from 'app/core/profesor/profesor.service';
 
 @Component({
   selector: 'jhi-navbar',
@@ -26,6 +27,7 @@ export class NavbarComponent implements OnInit {
     private loginModalService: LoginModalService,
     private profileService: ProfileService,
     private estudianteService: EstudianteService,
+    private profesorService: ProfesorService,
     private router: Router
   ) {
     this.version = VERSION ? (VERSION.toLowerCase().startsWith('v') ? VERSION : 'v' + VERSION) : '';

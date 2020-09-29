@@ -10,7 +10,15 @@ import { Authority } from 'app/shared/constants/authority.constants';
         path: 'estudiante-manager',
         loadChildren: () => import('./estudiante-manager/estudiante-management.module').then(m => m.EstudianteManagementModule),
         data: {
-          pageTitle: 'Estudiantes',
+          pageTitle: 'estudiantes',
+          authorities: [Authority.ADMIN],
+        },
+      },
+      {
+        path: 'profesor-manager',
+        loadChildren: () => import('./profesor-manager/profesor-management.module').then(m => m.ProfesorManagementModule),
+        data: {
+          pageTitle: 'profesores',
           authorities: [Authority.ADMIN],
         },
       },
