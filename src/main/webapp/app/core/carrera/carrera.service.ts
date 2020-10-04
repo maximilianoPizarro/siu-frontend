@@ -8,7 +8,7 @@ import { ICarrera } from './carrera.model';
 
 @Injectable({ providedIn: 'root' })
 export class CarreraService {
-  public resourceUrl = SERVER_API_ESTUDIANTES + 'carrera';
+  public resourceUrl = SERVER_API_ESTUDIANTES + 'carreras';
 
   constructor(private http: HttpClient) {}
 
@@ -17,7 +17,7 @@ export class CarreraService {
   }
 
   update(carrera: ICarrera): Observable<ICarrera> {
-    return this.http.put<ICarrera>(this.resourceUrl, carrera);
+    return this.http.put<ICarrera>(`${this.resourceUrl}/${carrera.idCarreras}`, carrera);
   }
 
   find(id: any): Observable<ICarrera> {

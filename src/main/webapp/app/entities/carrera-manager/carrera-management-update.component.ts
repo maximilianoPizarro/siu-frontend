@@ -26,9 +26,6 @@ export class CarreraManagementUpdateComponent implements OnInit {
     this.route.data.subscribe(({ carrera }) => {
       if (carrera) {
         this.carrera = carrera;
-        if (this.carrera.idCarreras === undefined) {
-          this.carrera.idCarreras = 0;
-        }
         this.updateForm(carrera);
       }
     });
