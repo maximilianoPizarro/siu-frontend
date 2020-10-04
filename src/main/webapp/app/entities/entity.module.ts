@@ -22,6 +22,14 @@ import { Authority } from 'app/shared/constants/authority.constants';
           authorities: [Authority.ADMIN],
         },
       },
+      {
+        path: 'carrera-manager',
+        loadChildren: () => import('./carrera-manager/carrera-management.module').then(m => m.CarreraManagementModule),
+        data: {
+          pageTitle: 'carreras',
+          authorities: [Authority.ADMIN],
+        },
+      },
     ]),
   ],
 })

@@ -22,7 +22,7 @@
                     <span>
                         <fa-icon icon="th-list"></fa-icon>
                         <span>
-                            Entities
+                            Administración
                         </span>
                     </span>
                 </a>
@@ -30,12 +30,16 @@
                     <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
                     <a class="dropdown-item" routerLink="entities/estudiante-manager" routerLinkActive="active" (click)="collapseNavbar()">
                         <fa-icon icon="user" [fixedWidth]="true"></fa-icon>
-                        <span>ABM Estudiantes</span>
+                        <span>Estudiantes</span>
                     </a>
                     <a class="dropdown-item" routerLink="entities/profesor-manager" routerLinkActive="active" (click)="collapseNavbar()">
                         <fa-icon icon="user" [fixedWidth]="true"></fa-icon>
-                        <span>ABM Docentes</span>
+                        <span>Docentes</span>
                     </a>
+                    <a class="dropdown-item" routerLink="entities/carrera-manager" routerLinkActive="active" (click)="collapseNavbar()">
+                        <fa-icon icon="user" [fixedWidth]="true"></fa-icon>
+                        <span>Carreras</span>
+                    </a>                    
                 </ul>
                  
             </li>
