@@ -1,0 +1,67 @@
+<div>
+    <h2>
+        <span id="materia-management-page-heading">Materias</span>
+
+        <button class="btn btn-primary float-right jh-create-entity" [routerLink]="['./new']">
+            <fa-icon icon="plus"></fa-icon> <span>Agregar nueva Materia</span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="table-responsive" *ngIf="materias">
+        <table class="table table-striped" aria-describedby="materia-management-page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="transition.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="nombre"><span>Nombre</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="inicioInscripcion"><span>Inicio Incripcion</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="finInscripcion"><span>Fin Inscripcion</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="Carreras_idCarreras"><span>Carrera</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="createdAt"><span>Creado</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="updatedAt"><span>Actualizado</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody *ngIf="materias">
+                <tr *ngFor="let materia of materias">
+                    <td><a [routerLink]="['./', materia.idMaterias, 'view']">{{ materia.idMaterias }}</a></td>
+                    <td>{{ materia.nombre }}</td>
+                    <td>{{ materia.inicioInscripcion }}</td>
+                    <td>{{ materia.finInscripcion }}</td>   
+                    <td>{{ materia.Carreras_idCarreras }}</td>                                       
+                    <td>{{ materia.createdAt }}</td>
+                    <td>{{ materia.updatedAt }}</td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['./', materia.idMaterias, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['./', materia.idMaterias, 'edit']"
+                                    queryParamsHandling="merge"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline">Edit</span>
+                            </button>
+
+                            <button type="button" (click)="deleteMateria(materia)"
+                                    class="btn btn-danger btn-sm" 
+                                    >
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>

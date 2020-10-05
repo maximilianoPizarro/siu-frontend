@@ -10,6 +10,7 @@ import { ProfileService } from 'app/layouts/profiles/profile.service';
 import { EstudianteService } from 'app/core/estudiante/estudiante.service';
 import { ProfesorService } from 'app/core/profesor/profesor.service';
 import { CarreraService } from 'app/core/carrera/carrera.service';
+import { MateriaService } from 'app/core/materia/materia.service';
 
 @Component({
   selector: 'jhi-navbar',
@@ -30,6 +31,7 @@ export class NavbarComponent implements OnInit {
     private estudianteService: EstudianteService,
     private profesorService: ProfesorService,
     private carreraService: CarreraService,
+    private materiaService: MateriaService,
     private router: Router
   ) {
     this.version = VERSION ? (VERSION.toLowerCase().startsWith('v') ? VERSION : 'v' + VERSION) : '';

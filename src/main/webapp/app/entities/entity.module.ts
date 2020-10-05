@@ -30,6 +30,14 @@ import { Authority } from 'app/shared/constants/authority.constants';
           authorities: [Authority.ADMIN],
         },
       },
+      {
+        path: 'materia-manager',
+        loadChildren: () => import('./materia-manager/materia-management.module').then(m => m.MateriaManagementModule),
+        data: {
+          pageTitle: 'materias',
+          authorities: [Authority.ADMIN],
+        },
+      },
     ]),
   ],
 })

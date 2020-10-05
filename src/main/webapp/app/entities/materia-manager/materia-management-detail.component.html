@@ -1,0 +1,32 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="materia">
+            <h2>
+                <span>materia</span> [<b>{{ materia.nombre }}</b>]
+            </h2>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span>Materia</span></dt>
+                <dd>
+                    <span>{{ materia.idMaterias }}</span>
+                </dd>
+
+                <dt><span>Nombre</span></dt>
+                <dd>{{ materia.nombre }}</dd>
+
+                <dt><span>Inicio</span></dt>
+                <dd>{{ materia.inicioInscripcion }}</dd>
+
+                <dt><span>Fin</span></dt>
+                <dd>{{ materia.finInscripcion }}</dd>
+
+                <dt><span>Carrera</span></dt>
+                <dd>{{ materia.Carreras_idCarreras}}</dd>
+            </dl>
+
+            <button type="submit" routerLink="../../" class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+            </button>
+        </div>
+    </div>
+</div>
