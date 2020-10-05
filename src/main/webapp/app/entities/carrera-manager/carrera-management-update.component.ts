@@ -53,7 +53,7 @@ export class CarreraManagementUpdateComponent implements OnInit {
 
   private updateForm(carrera: Carrera): void {
     this.editForm.patchValue({
-      id: carrera.idCarreras,
+      idCarreras: carrera.idCarreras,
       nombre: carrera.nombre,
       departamento: carrera.departamento,
     });
