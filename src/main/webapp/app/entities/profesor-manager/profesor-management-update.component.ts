@@ -18,6 +18,7 @@ export class ProfesorManagementUpdateComponent implements OnInit {
     id: [],
     nombre: ['', [Validators.maxLength(50)]],
     apellido: ['', [Validators.maxLength(50)]],
+    dni: ['', [Validators.maxLength(50)]],
     titulo: ['', [Validators.maxLength(50)]],
     domicilio: ['', [Validators.maxLength(50)]],
     telefono: ['', [Validators.maxLength(50)]],
@@ -62,6 +63,7 @@ export class ProfesorManagementUpdateComponent implements OnInit {
       id: profesor.id,
       nombre: profesor.nombre,
       apellido: profesor.apellido,
+      dni: profesor.dni,
       domicilio: profesor.domicilio,
       titulo: profesor.titulo,
       telefono: profesor.telefono,
@@ -71,6 +73,7 @@ export class ProfesorManagementUpdateComponent implements OnInit {
   private updateProfesor(profesor: Profesor): void {
     profesor.nombre = this.editForm.get(['nombre'])!.value;
     profesor.apellido = this.editForm.get(['apellido'])!.value;
+    profesor.dni = this.editForm.get(['dni'])!.value;
     profesor.domicilio = this.editForm.get(['domicilio'])!.value;
     profesor.titulo = this.editForm.get(['titulo'])!.value;
     profesor.telefono = this.editForm.get(['telefono'])!.value;

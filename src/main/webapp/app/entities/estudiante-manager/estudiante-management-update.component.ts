@@ -18,6 +18,7 @@ export class EstudianteManagementUpdateComponent implements OnInit {
     id: [],
     nombre: ['', [Validators.maxLength(50)]],
     apellido: ['', [Validators.maxLength(50)]],
+    dni: ['', [Validators.maxLength(50)]],
     email: ['', [Validators.minLength(5), Validators.maxLength(254), Validators.email]],
     domicilio: ['', [Validators.maxLength(50)]],
     telefono: ['', [Validators.maxLength(50)]],
@@ -71,6 +72,7 @@ export class EstudianteManagementUpdateComponent implements OnInit {
   private updateEstudiante(estudiante: Estudiante): void {
     estudiante.nombre = this.editForm.get(['nombre'])!.value;
     estudiante.apellido = this.editForm.get(['apellido'])!.value;
+    estudiante.dni = this.editForm.get(['dni'])!.value;
     estudiante.domicilio = this.editForm.get(['domicilio'])!.value;
     estudiante.email = this.editForm.get(['email'])!.value;
     estudiante.telefono = this.editForm.get(['telefono'])!.value;

@@ -18,6 +18,7 @@
                     <th scope="col"  jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="nombre"><span>Nombre</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="apellido"><span>Apellido</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="dni"><span>Dni</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="domicilio"><span>Domicilio</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="titulo"><span>Título</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="telefono"><span>Telefono</span> <fa-icon icon="sort"></fa-icon></th>
@@ -28,7 +29,8 @@
                 <tr *ngFor="let profesor of profesores">
                     <td><a [routerLink]="['./', profesor.id, 'view']">{{ profesor.id }}</a></td>
                     <td>{{ profesor.nombre }}</td>
-                    <td>{{ profesor.apellido }}</td>                    
+                    <td>{{ profesor.apellido }}</td>
+                    <td>{{ profesor.dni }}</td>                    
                     <td>{{ profesor.domicilio }}</td>                    
                     <td>{{ profesor.titulo }}</td>
                     <td>{{ profesor.telefono }}</td>
