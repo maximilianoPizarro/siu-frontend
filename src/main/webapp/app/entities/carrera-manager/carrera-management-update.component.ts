@@ -11,7 +11,6 @@ import { CarreraService } from 'app/core/carrera/carrera.service';
 })
 export class CarreraManagementUpdateComponent implements OnInit {
   carrera!: Carrera;
-  authorities: string[] = [];
   isSaving = false;
 
   editForm = this.fb.group({

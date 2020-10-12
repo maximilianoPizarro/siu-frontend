@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { SERVER_API_ESTUDIANTES } from 'app/app.constants';
 import { createRequestOption, Pagination } from 'app/shared/util/request-util';
 import { IMateria } from './materia.model';
+import { ICarrera } from '../carrera/carrera.model';
 
 @Injectable({ providedIn: 'root' })
 export class MateriaService {
@@ -31,5 +32,9 @@ export class MateriaService {
 
   delete(id: any): Observable<{}> {
     return this.http.delete(`${this.resourceUrl}/${id}`);
+  }
+
+  carrera(materia: IMateria): Observable<ICarrera> {
+    return this.http.get<ICarrera>(SERVER_API_ESTUDIANTES + `carreras/${materia.Carreras_idCarreras}`);
   }
 }

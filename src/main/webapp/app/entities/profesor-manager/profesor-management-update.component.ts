@@ -11,7 +11,6 @@ import { ProfesorService } from 'app/core/profesor/profesor.service';
 })
 export class ProfesorManagementUpdateComponent implements OnInit {
   profesor!: Profesor;
-  authorities: string[] = [];
   isSaving = false;
 
   editForm = this.fb.group({

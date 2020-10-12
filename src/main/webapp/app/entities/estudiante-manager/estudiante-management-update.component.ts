@@ -11,7 +11,6 @@ import { EstudianteService } from 'app/core/estudiante/estudiante.service';
 })
 export class EstudianteManagementUpdateComponent implements OnInit {
   estudiante!: Estudiante;
-  authorities: string[] = [];
   isSaving = false;
 
   editForm = this.fb.group({

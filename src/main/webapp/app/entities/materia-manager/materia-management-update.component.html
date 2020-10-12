@@ -25,21 +25,29 @@
                         </small>
                     </div>
                 </div>
+                <div class="form-group">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Inicio</span>
+                        </div>
+                        <input type="date" class="form-control" name="inicioInscripcion" formControlName="inicioInscripcion"  required/>
 
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">Inicio</span>
                     </div>
-                    <input type="date" class="form-control" name="inicioInscripcion" required/>
-    
-                    <div class="input-group-append">
-                        <span class="input-group-text">Fin</span>
-                    </div>
-                    <input type="date" class="form-control" name="finInscripcion" required/>
                 </div>
-                <div class="form-group" [hidden]="!materia.Carreras_idCarreras">
+
+                <div class="form-group">
+                    <div class="input-group mb-3">
+                <div class="input-group-append">
+                    <span class="input-group-text">Fin</span>
+                </div>
+                <input type="date" class="form-control" name="finInscripcion" formControlName="finInscripcion" required/>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
                     <label>Carrera</label>
-                    <input type="text" class="form-control" name="Carreras_idCarreras" formControlName="Carreras_idCarreras" readonly>
+                    <input type="text" class="form-control" name="idCarreras" formControlName="idCarreras" readonly>
                 </div>
                 
             </div>

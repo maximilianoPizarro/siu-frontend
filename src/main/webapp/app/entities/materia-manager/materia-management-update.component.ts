@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { ICarrera } from 'app/core/carrera/carrera.model';
 
 import { Materia } from 'app/core/materia/materia.model';
 import { MateriaService } from 'app/core/materia/materia.service';
@@ -11,7 +12,7 @@ import { MateriaService } from 'app/core/materia/materia.service';
 })
 export class MateriaManagementUpdateComponent implements OnInit {
   materia!: Materia;
-  authorities: string[] = [];
+  carreras: ICarrera[] | null = null;
   isSaving = false;
 
   editForm = this.fb.group({
@@ -19,6 +20,7 @@ export class MateriaManagementUpdateComponent implements OnInit {
     nombre: ['', [Validators.maxLength(50)]],
     inicioInscripcion: ['', [Validators.required]],
     finInscripcion: ['', [Validators.required]],
+    idCarreras: [],
   });
 
   constructor(private materiaService: MateriaService, private route: ActivatedRoute, private fb: FormBuilder) {}
@@ -58,6 +60,7 @@ export class MateriaManagementUpdateComponent implements OnInit {
       nombre: materia.nombre,
       inicioInscripcion: materia.inicioInscripcion,
       finInscripcion: materia.finInscripcion,
+      idCarreras: materia.Carreras_idCarreras,
     });
   }
 
@@ -65,6 +68,7 @@ export class MateriaManagementUpdateComponent implements OnInit {
     materia.nombre = this.editForm.get(['nombre'])!.value;
     materia.inicioInscripcion = this.editForm.get(['inicioInscripcion'])!.value;
     materia.finInscripcion = this.editForm.get(['finInscripcion'])!.value;
+    materia.carrera = this.editForm.get(['idCarreras'])!.value;
   }
 
   private onSaveSuccess(): void {
