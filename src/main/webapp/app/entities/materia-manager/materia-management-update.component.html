@@ -47,9 +47,18 @@
 
                 <div class="form-group">
                     <label>Carrera</label>
-                    <input type="text" class="form-control" name="Carreras_idCarreras" formControlName="Carreras_idCarreras">
+                    <input type="text" class="form-control" name="idCarreras" formControlName="idCarreras">
                 </div>
-                
+
+                <div class="form-group">
+                    <label>Plan</label>
+                    <input type="text" class="form-control" name="idPlan" formControlName="idPlan">
+                </div>                
+                <div class="form-group">
+                    <label>Forma de aprobación</label>
+                    <input type="text" class="form-control" name="idFormaAprobacion" formControlName="idFormaAprobacion">
+                </div>
+
             </div>
 
             <div *ngIf="materia">

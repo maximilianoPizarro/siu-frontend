@@ -19,7 +19,9 @@
                     <th scope="col"  jhiSortBy="nombre"><span>Nombre</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="inicioInscripcion"><span>Inicio Incripcion</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="finInscripcion"><span>Fin Inscripcion</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="Carreras_idCarreras"><span>Carrera</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="idCarreras"><span>Carrera</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="idPlan"><span>Plan</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="idFormaAprobacion"><span>Aprobación</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="createdAt"><span>Creado</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="updatedAt"><span>Actualizado</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"></th>
@@ -31,7 +33,9 @@
                     <td>{{ materia.nombre }}</td>
                     <td>{{ materia.inicioInscripcion }}</td>
                     <td>{{ materia.finInscripcion }}</td>   
-                    <td>{{ materia.carreras?.nombre }}</td>                                          
+                    <td>{{ materia.carreras?.nombre }}</td>
+                    <td>{{ materia.plan?.descripcion }}</td>
+                    <td>{{ materia.formaaprobacion?.descripcion }}</td>                                          
                     <td>{{ materia.createdAt }}</td>
                     <td>{{ materia.updatedAt }}</td>
                     <td class="text-right">

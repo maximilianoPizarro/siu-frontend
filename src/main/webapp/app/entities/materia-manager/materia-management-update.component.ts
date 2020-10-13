@@ -18,8 +18,9 @@ export class MateriaManagementUpdateComponent implements OnInit {
     nombre: ['', [Validators.maxLength(50)]],
     inicioInscripcion: ['', [Validators.required]],
     finInscripcion: ['', [Validators.required]],
-    Carreras_idCarreras: [],
     idCarreras: [],
+    idPlan: [],
+    idFormaAprobacion: [],
   });
 
   constructor(private materiaService: MateriaService, private route: ActivatedRoute, private fb: FormBuilder) {}
@@ -59,7 +60,9 @@ export class MateriaManagementUpdateComponent implements OnInit {
       nombre: materia.nombre,
       inicioInscripcion: materia.inicioInscripcion,
       finInscripcion: materia.finInscripcion,
-      idCarreras: materia.Carreras_idCarreras,
+      idCarreras: materia.CarrerasIdCarreras,
+      idPlan: materia.planIdPlan,
+      idFormaAprobacion: materia.formaAprobacionIdformaAprobacion,
     });
   }
 
@@ -67,7 +70,9 @@ export class MateriaManagementUpdateComponent implements OnInit {
     materia.nombre = this.editForm.get(['nombre'])!.value;
     materia.inicioInscripcion = this.editForm.get(['inicioInscripcion'])!.value;
     materia.finInscripcion = this.editForm.get(['finInscripcion'])!.value;
-    materia.carreras = this.editForm.get(['Carreras_idCarreras'])!.value;
+    materia.CarrerasIdCarreras = this.editForm.get(['idCarreras'])!.value;
+    materia.planIdPlan = this.editForm.get(['idPlan'])!.value;
+    materia.formaAprobacionIdformaAprobacion = this.editForm.get(['idFormaAprobacion'])!.value;
   }
 
   private onSaveSuccess(): void {
