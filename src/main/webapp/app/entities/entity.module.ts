@@ -38,6 +38,14 @@ import { Authority } from 'app/shared/constants/authority.constants';
           authorities: [Authority.ADMIN],
         },
       },
+      {
+        path: 'examen-manager',
+        loadChildren: () => import('./examen-manager/examen-management.module').then(m => m.ExamenManagementModule),
+        data: {
+          pageTitle: 'examenes',
+          authorities: [Authority.ADMIN],
+        },
+      },
     ]),
   ],
 })

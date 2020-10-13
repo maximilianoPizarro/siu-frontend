@@ -1,0 +1,103 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="myExamenLabel">
+                Crear o modificar una Examen
+            </h2>
+
+            <div *ngIf="examen">
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!examen.idExamenes">
+                    <label>ID</label>
+                    <input type="text" class="form-control" name="idExamenes" formControlName="idExamenes" readonly>
+                </div>
+                <div class="form-group">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Día</span>
+                        </div>
+                        <input type="date" class="form-control" name="fecha" formControlName="fecha"  required/>
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label">Docente asignado</label>
+                    <input type="text" class="form-control" name="docenteAsignado"
+                           formControlName="docenteAsignado">
+
+                    <div *ngIf="editForm.get('docenteAsignado')!.invalid && (editForm.get('docenteAsignado')!.dirty || editForm.get('docenteAsignado')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('docenteAsignado')?.errors?.maxlength">
+                            This field cannot be longer than 50 characters.
+                        </small>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="form-control-label">Horario Inicio</label>
+                    <input type="text" class="form-control" name="horarioInicio"
+                           formControlName="horarioInicio">
+
+                    <div *ngIf="editForm.get('horarioInicio')!.invalid && (editForm.get('horarioInicio')!.dirty || editForm.get('horarioInicio')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('horarioInicio')?.errors?.maxlength">
+                            This field cannot be longer than 50 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label">Horario Fin</label>
+                    <input type="text" class="form-control" name="horarioFin"
+                           formControlName="horarioFin">
+
+                    <div *ngIf="editForm.get('horarioFin')!.invalid && (editForm.get('horarioFin')!.dirty || editForm.get('horarioFin')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('horarioFin')?.errors?.maxlength">
+                            This field cannot be longer than 50 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Inicio</span>
+                        </div>
+                        <input type="date" class="form-control" name="inicioInscripcion" formControlName="inicioInscripcion"  required/>
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-group mb-3">
+                <div class="input-group-append">
+                    <span class="input-group-text">Fin</span>
+                </div>
+                <input type="date" class="form-control" name="finInscripcion" formControlName="finInscripcion" required/>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label>Carrera</label>
+                    <input type="text" class="form-control" name="Carreras_idCarreras" formControlName="Carreras_idCarreras">
+                </div>
+                
+            </div>
+
+            <div *ngIf="examen">
+                <button type="button" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+
+                <button type="submit" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
