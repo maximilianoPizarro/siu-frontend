@@ -21,8 +21,7 @@ export class ExamenManagementUpdateComponent implements OnInit {
     docenteAsignado: ['', [Validators.required]],
     inicioInscripcion: ['', [Validators.required]],
     finInscripcion: ['', [Validators.required]],
-    Carreras_idCarreras: [],
-    Materias_Carreras_idCarreras: [],
+    MateriasIdMaterias: [],
   });
 
   constructor(private examenService: ExamenService, private route: ActivatedRoute, private fb: FormBuilder) {}
@@ -65,7 +64,7 @@ export class ExamenManagementUpdateComponent implements OnInit {
       docenteAsignado: examen.docenteAsignado,
       inicioInscripcion: examen.inicioInscripcion,
       finInscripcion: examen.finInscripcion,
-      idCarreras: examen.Materias_Carreras_idCarreras,
+      MateriasIdMaterias: examen.MateriasIdMaterias,
     });
   }
 

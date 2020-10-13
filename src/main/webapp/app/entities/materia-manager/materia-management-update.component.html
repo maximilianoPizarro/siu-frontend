@@ -46,18 +46,22 @@
 
 
                 <div class="form-group">
-                    <label>Carrera</label>
-                    <input type="text" class="form-control" name="idCarreras" formControlName="idCarreras">
-                </div>
+                    <label>Carreras</label>
+                    <select  class="form-control" multiple name="CarrerasIdCarreras" formControlName="CarrerasIdCarreras">
+                        <option *ngFor="let carrera of carreras" [value]="carrera.idCarreras">{{carrera.nombre}}</option>
+                    </select>
+                </div>           
 
                 <div class="form-group">
                     <label>Plan</label>
-                    <input type="text" class="form-control" name="idPlan" formControlName="idPlan">
+                    <input type="number" class="form-control" name="idPlan" formControlName="idPlan">
                 </div>                
                 <div class="form-group">
                     <label>Forma de aprobación</label>
-                    <input type="text" class="form-control" name="idFormaAprobacion" formControlName="idFormaAprobacion">
+                    <input type="number" class="form-control" name="idFormaAprobacion" formControlName="idFormaAprobacion">
                 </div>
+
+  
 
             </div>
 

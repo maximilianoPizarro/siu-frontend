@@ -5,7 +5,6 @@ import { Observable } from 'rxjs';
 import { SERVER_API_ESTUDIANTES } from 'app/app.constants';
 import { createRequestOption, Pagination } from 'app/shared/util/request-util';
 import { IMateria } from './materia.model';
-import { ICarrera } from '../carrera/carrera.model';
 
 @Injectable({ providedIn: 'root' })
 export class MateriaService {

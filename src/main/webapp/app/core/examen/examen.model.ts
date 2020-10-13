@@ -1,3 +1,5 @@
+import { IMateria } from '../materia/materia.model';
+
 export interface IExamen {
   idExamenes?: any;
   fecha?: Date;
@@ -6,8 +8,8 @@ export interface IExamen {
   docenteAsignado?: string;
   inicioInscripcion?: Date;
   finInscripcion?: Date;
-  Materias_idMaterias?: any;
-  Materias_Carreras_idCarreras?: any;
+  MateriasIdMaterias?: any;
+  materias?: any;
   createdAt?: Date;
   updatedAt?: Date;
 }
@@ -21,8 +23,8 @@ export class Examen implements IExamen {
     public docenteAsignado?: string,
     public inicioInscripcion?: Date,
     public finInscripcion?: Date,
-    public Materias_idMaterias?: any,
-    public Materias_Carreras_idCarreras?: any,
+    public MateriasIdMaterias?: any,
+    public materias?: IMateria,
     public createdAt?: Date,
     public updatedAt?: Date
   ) {}

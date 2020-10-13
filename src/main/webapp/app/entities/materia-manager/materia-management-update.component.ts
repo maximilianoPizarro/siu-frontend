@@ -1,6 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { HttpHeaders, HttpResponse } from '@angular/common/http';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
+import { JhiEventManager } from 'ng-jhipster';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { Carrera } from 'app/core/carrera/carrera.model';
+import { CarreraService } from 'app/core/carrera/carrera.service';
 
 import { Materia } from 'app/core/materia/materia.model';
 import { MateriaService } from 'app/core/materia/materia.service';
@@ -9,8 +14,16 @@ import { MateriaService } from 'app/core/materia/materia.service';
   selector: 'jhi-materia-mgmt-update',
   templateUrl: './materia-management-update.component.html',
 })
-export class MateriaManagementUpdateComponent implements OnInit {
+export class MateriaManagementUpdateComponent implements OnInit, OnDestroy {
   materia!: Materia;
+  carreras: Carrera[] | null = null;
+  carreraListSubscription?: any;
+  totalItems = 0;
+  itemsPerPage = ITEMS_PER_PAGE;
+  page!: number;
+  predicate!: string;
+  ascending!: boolean;
+
   isSaving = false;
 
   editForm = this.fb.group({
@@ -18,20 +31,54 @@ export class MateriaManagementUpdateComponent implements OnInit {
     nombre: ['', [Validators.maxLength(50)]],
     inicioInscripcion: ['', [Validators.required]],
     finInscripcion: ['', [Validators.required]],
-    idCarreras: [],
+    CarrerasIdCarreras: [],
     idPlan: [],
     idFormaAprobacion: [],
   });
 
-  constructor(private materiaService: MateriaService, private route: ActivatedRoute, private fb: FormBuilder) {}
+  constructor(
+    private materiaService: MateriaService,
+    private carreraService: CarreraService,
+    private eventManager: JhiEventManager,
+    private route: ActivatedRoute,
+    private fb: FormBuilder
+  ) {}
 
   ngOnInit(): void {
+    this.loadAll();
     this.route.data.subscribe(({ materia }) => {
       if (materia) {
         this.materia = materia;
         this.updateForm(materia);
       }
     });
+  }
+
+  ngOnDestroy(): void {
+    this.carreraListSubscription.unsubscribe();
+  }
+
+  private loadAll(): void {
+    this.carreraListSubscription = this.carreraService
+      .query({
+        page: this.page - 1,
+        size: this.itemsPerPage,
+        sort: this.sort(),
+      })
+      .subscribe((res: HttpResponse<Carrera[]>) => this.onSuccess(res.body, res.headers));
+  }
+
+  private onSuccess(carreras: Carrera[] | null, headers: HttpHeaders): void {
+    this.totalItems = Number(headers.get('X-Total-Count'));
+    this.carreras = carreras;
+  }
+
+  private sort(): string[] {
+    const result = [this.predicate + ',' + (this.ascending ? 'asc' : 'desc')];
+    if (this.predicate !== 'id') {
+      result.push('id');
+    }
+    return result;
   }
 
   previousState(): void {
@@ -60,7 +107,7 @@ export class MateriaManagementUpdateComponent implements OnInit {
       nombre: materia.nombre,
       inicioInscripcion: materia.inicioInscripcion,
       finInscripcion: materia.finInscripcion,
-      idCarreras: materia.CarrerasIdCarreras,
+      CarrerasIdCarreras: materia.CarrerasIdCarreras,
       idPlan: materia.planIdPlan,
       idFormaAprobacion: materia.formaAprobacionIdformaAprobacion,
     });
@@ -70,7 +117,7 @@ export class MateriaManagementUpdateComponent implements OnInit {
     materia.nombre = this.editForm.get(['nombre'])!.value;
     materia.inicioInscripcion = this.editForm.get(['inicioInscripcion'])!.value;
     materia.finInscripcion = this.editForm.get(['finInscripcion'])!.value;
-    materia.CarrerasIdCarreras = this.editForm.get(['idCarreras'])!.value;
+    materia.CarrerasIdCarreras = this.editForm.get(['CarrerasIdCarreras'])!.value;
     materia.planIdPlan = this.editForm.get(['idPlan'])!.value;
     materia.formaAprobacionIdformaAprobacion = this.editForm.get(['idFormaAprobacion'])!.value;
   }
