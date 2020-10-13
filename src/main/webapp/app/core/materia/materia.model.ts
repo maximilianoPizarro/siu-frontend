@@ -6,7 +6,7 @@ export interface IMateria {
   inicioInscripcion?: Date;
   finInscripcion?: Date;
   Carreras_idCarreras?: any;
-  carrera?: ICarrera;
+  carreras?: ICarrera;
   createdAt?: Date;
   updatedAt?: Date;
 }
@@ -18,7 +18,7 @@ export class Materia implements IMateria {
     public inicioInscripcion?: Date,
     public finInscripcion?: Date,
     public Carreras_idCarreras?: any,
-    public carrera?: ICarrera,
+    public carreras?: ICarrera,
     public createdAt?: Date,
     public updatedAt?: Date
   ) {}

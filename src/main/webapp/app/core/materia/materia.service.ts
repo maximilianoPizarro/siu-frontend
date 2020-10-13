@@ -33,8 +33,4 @@ export class MateriaService {
   delete(id: any): Observable<{}> {
     return this.http.delete(`${this.resourceUrl}/${id}`);
   }
-
-  carrera(materia: IMateria): Observable<ICarrera> {
-    return this.http.get<ICarrera>(SERVER_API_ESTUDIANTES + `carreras/${materia.Carreras_idCarreras}`);
-  }
 }

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { ICarrera } from 'app/core/carrera/carrera.model';
 
 import { Materia } from 'app/core/materia/materia.model';
 import { MateriaService } from 'app/core/materia/materia.service';
@@ -12,7 +11,6 @@ import { MateriaService } from 'app/core/materia/materia.service';
 })
 export class MateriaManagementUpdateComponent implements OnInit {
   materia!: Materia;
-  carreras: ICarrera[] | null = null;
   isSaving = false;
 
   editForm = this.fb.group({
@@ -20,6 +18,7 @@ export class MateriaManagementUpdateComponent implements OnInit {
     nombre: ['', [Validators.maxLength(50)]],
     inicioInscripcion: ['', [Validators.required]],
     finInscripcion: ['', [Validators.required]],
+    Carreras_idCarreras: [],
     idCarreras: [],
   });
 
@@ -68,7 +67,7 @@ export class MateriaManagementUpdateComponent implements OnInit {
     materia.nombre = this.editForm.get(['nombre'])!.value;
     materia.inicioInscripcion = this.editForm.get(['inicioInscripcion'])!.value;
     materia.finInscripcion = this.editForm.get(['finInscripcion'])!.value;
-    materia.carrera = this.editForm.get(['idCarreras'])!.value;
+    materia.carreras = this.editForm.get(['Carreras_idCarreras'])!.value;
   }
 
   private onSaveSuccess(): void {
