@@ -14,8 +14,11 @@
                 <dt><span>Fecha</span></dt>
                 <dd>{{ examen.fecha }}</dd>
 
+                <dt><span>Materia</span></dt>
+                <td>{{examen.materias?.nombre}}</td>
+
                 <dt><span>Docente asignado</span></dt>
-                <dd>{{ examen.docenteAsignado }}</dd>
+                <dd>{{ examen.docenteAsignado?.nombre }} {{ examen.docenteAsignado?.apellido }}</dd>
 
                 <dt><span>Horario inicio</span></dt>
                 <dd>{{ examen.horarioInicio }}</dd>

@@ -5,7 +5,9 @@ import { ActivatedRoute } from '@angular/router';
 
 import { Examen } from 'app/core/examen/examen.model';
 import { ExamenService } from 'app/core/examen/examen.service';
-import { IProfesor, Profesor } from 'app/core/profesor/profesor.model';
+import { Materia } from 'app/core/materia/materia.model';
+import { MateriaService } from 'app/core/materia/materia.service';
+import { Profesor } from 'app/core/profesor/profesor.model';
 import { ProfesorService } from 'app/core/profesor/profesor.service';
 
 @Component({
@@ -15,9 +17,9 @@ import { ProfesorService } from 'app/core/profesor/profesor.service';
 export class ExamenManagementUpdateComponent implements OnInit, OnDestroy {
   examen!: Examen;
   profesores: Profesor[] | null = null;
+  materias: Materia[] | null = null;
   profesorListSubscription?: any;
-  profesorAsignado!: IProfesor;
-  profesorAsignadoListSubscription?: any;
+  materiasListSubscription?: any;
   isSaving = false;
   totalItems = 0;
   itemsPerPage = 20;
@@ -40,13 +42,14 @@ export class ExamenManagementUpdateComponent implements OnInit, OnDestroy {
   constructor(
     private examenService: ExamenService,
     private profesorService: ProfesorService,
+    private materiaService: MateriaService,
     private route: ActivatedRoute,
     private fb: FormBuilder
   ) {}
 
   ngOnInit(): void {
-    this.loadAll();
-
+    this.loadAllProfesores();
+    this.loadAllMaterias();
     this.route.data.subscribe(({ examen }) => {
       if (examen) {
         this.examen = examen;
@@ -57,12 +60,10 @@ export class ExamenManagementUpdateComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.profesorListSubscription.unsubscribe();
-    if (this.profesorAsignadoListSubscription) {
-      this.profesorAsignadoListSubscription.unsubscribe();
-    }
+    this.materiasListSubscription.unsubscribe();
   }
 
-  private loadAll(): void {
+  private loadAllProfesores(): void {
     this.profesorListSubscription = this.profesorService
       .query()
       .subscribe((res: HttpResponse<Profesor[]>) => this.onSuccess(res.body, res.headers));
@@ -71,6 +72,17 @@ export class ExamenManagementUpdateComponent implements OnInit, OnDestroy {
   private onSuccess(profesores: Profesor[] | null, headers: HttpHeaders): void {
     this.totalItems = Number(headers.get('X-Total-Count'));
     this.profesores = profesores;
+  }
+
+  private loadAllMaterias(): void {
+    this.materiasListSubscription = this.materiaService
+      .query()
+      .subscribe((res: HttpResponse<Materia[]>) => this.onSuccessMaterias(res.body, res.headers));
+  }
+
+  private onSuccessMaterias(materias: Materia[] | null, headers: HttpHeaders): void {
+    this.totalItems = Number(headers.get('X-Total-Count'));
+    this.materias = materias;
   }
 
   previousState(): void {
@@ -105,16 +117,6 @@ export class ExamenManagementUpdateComponent implements OnInit, OnDestroy {
       MateriasIdMaterias: examen.MateriasIdMaterias,
       docenteAsignado: examen.docenteAsignado,
     });
-  }
-
-  private findProfesor(idProfesor: any | null = 1, examen: Examen): any {
-    this.profesorAsignadoListSubscription = this.profesorService
-      .find(idProfesor)
-      .subscribe((res: IProfesor) => this.onSuccessProfesor(res, examen));
-  }
-  private onSuccessProfesor(profesor: IProfesor, examen: Examen): void {
-    this.profesorAsignado = profesor;
-    examen.docenteAsignado = profesor;
   }
 
   private updateExamen(examen: Examen): void {
