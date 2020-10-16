@@ -6,10 +6,11 @@ export interface IExamen {
   fecha?: Date;
   horarioInicio?: string;
   horarioFin?: string;
-  docenteAsignado?: IProfesor;
   inicioInscripcion?: Date;
   finInscripcion?: Date;
   MateriasIdMaterias?: any;
+  docenteAsignado?: IProfesor;
+  acta?: string;
   materias?: any;
   createdAt?: Date;
   updatedAt?: Date;
@@ -25,6 +26,7 @@ export class Examen implements IExamen {
     public inicioInscripcion?: Date,
     public finInscripcion?: Date,
     public MateriasIdMaterias?: any,
+    public acta?: string,
     public materias?: IMateria,
     public createdAt?: Date,
     public updatedAt?: Date

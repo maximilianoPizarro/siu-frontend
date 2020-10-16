@@ -33,6 +33,7 @@ export class ExamenManagementUpdateComponent implements OnInit, OnDestroy {
     docenteAsignado: [],
     inicioInscripcion: ['', [Validators.required]],
     finInscripcion: ['', [Validators.required]],
+    acta: ['', [Validators.required]],
     MateriasIdMaterias: [],
   });
 
@@ -45,6 +46,7 @@ export class ExamenManagementUpdateComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.loadAll();
+
     this.route.data.subscribe(({ examen }) => {
       if (examen) {
         this.examen = examen;
@@ -55,7 +57,9 @@ export class ExamenManagementUpdateComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.profesorListSubscription.unsubscribe();
-    this.profesorAsignadoListSubscription.unsubscribe();
+    if (this.profesorAsignadoListSubscription) {
+      this.profesorAsignadoListSubscription.unsubscribe();
+    }
   }
 
   private loadAll(): void {
@@ -95,29 +99,33 @@ export class ExamenManagementUpdateComponent implements OnInit, OnDestroy {
       fecha: examen.fecha,
       horarioInicio: examen.horarioFin,
       horarioFin: examen.horarioFin,
-      docenteAsignado: examen.docenteAsignado,
       inicioInscripcion: examen.inicioInscripcion,
       finInscripcion: examen.finInscripcion,
+      acta: examen.acta,
       MateriasIdMaterias: examen.MateriasIdMaterias,
+      docenteAsignado: examen.docenteAsignado,
     });
   }
 
-  private findProfesor(id: any): any {
-    this.profesorAsignadoListSubscription = this.profesorService.find(id).subscribe((res: IProfesor) => this.onSuccessProfesor(res));
+  private findProfesor(idProfesor: any | null = 1, examen: Examen): any {
+    this.profesorAsignadoListSubscription = this.profesorService
+      .find(idProfesor)
+      .subscribe((res: IProfesor) => this.onSuccessProfesor(res, examen));
   }
-  private onSuccessProfesor(profesor: IProfesor): void {
+  private onSuccessProfesor(profesor: IProfesor, examen: Examen): void {
     this.profesorAsignado = profesor;
+    examen.docenteAsignado = profesor;
   }
 
   private updateExamen(examen: Examen): void {
-    this.findProfesor(this.editForm.get(['docenteAsignado'])!.value);
     examen.fecha = this.editForm.get(['fecha'])!.value;
     examen.horarioInicio = this.editForm.get(['horarioInicio'])!.value;
     examen.horarioFin = this.editForm.get(['horarioFin'])!.value;
-    examen.docenteAsignado = this.profesorAsignado;
     examen.inicioInscripcion = this.editForm.get(['inicioInscripcion'])!.value;
     examen.finInscripcion = this.editForm.get(['finInscripcion'])!.value;
+    examen.acta = this.editForm.get(['acta'])!.value;
     examen.MateriasIdMaterias = this.editForm.get(['MateriasIdMaterias'])!.value;
+    examen.docenteAsignado = this.editForm.get(['docenteAsignado'])!.value[0];
   }
 
   private onSaveSuccess(): void {

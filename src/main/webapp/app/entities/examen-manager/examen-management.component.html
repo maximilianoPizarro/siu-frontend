@@ -18,6 +18,7 @@
                     <th scope="col"  jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="fecha"><span>Fecha</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="materia"><span>Materia</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="acta"><span>Acta</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="horarioInicio"><span>Horario Inicio</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="horarioFin"><span>Horario Fin</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="docenteAsignado"><span>Docente Asignado</span> <fa-icon icon="sort"></fa-icon></th>
@@ -33,9 +34,10 @@
                     <td><a [routerLink]="['./', examen.idExamenes, 'view']">{{ examen.idExamenes }}</a></td>
                     <td>{{ examen.fecha }}</td>
                     <td>{{examen.materias?.nombre}}</td>
+                    <td>{{ examen.acta }}</td>
                     <td>{{ examen.horarioInicio }}</td>
-                    <td>{{ examen.horarioFin }}</td>
-                    <td>{{ examen.docenteAsignado }}</td>
+                    <td>{{ examen.horarioFin }}</td>                    
+                    <td>{{ examen.docenteAsignado?.nombre }} {{ examen.docenteAsignado?.apellido }}</td>
                     <td>{{ examen.inicioInscripcion }}</td>
                     <td>{{ examen.finInscripcion }}</td>                                       
                     <td>{{ examen.createdAt }}</td>
