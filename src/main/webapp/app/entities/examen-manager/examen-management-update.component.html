@@ -23,22 +23,15 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label">Docente asignado</label>
-                    <input type="text" class="form-control" name="docenteAsignado"
-                           formControlName="docenteAsignado">
-
-                    <div *ngIf="editForm.get('docenteAsignado')!.invalid && (editForm.get('docenteAsignado')!.dirty || editForm.get('docenteAsignado')!.touched)">
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('docenteAsignado')?.errors?.maxlength">
-                            This field cannot be longer than 50 characters.
-                        </small>
-                    </div>
-                </div>
-
+                    <label>Docente Asignado</label>
+                    <select  class="form-control" multiple name="docenteAsignado" formControlName="docenteAsignado">
+                        <option *ngFor="let profesor of profesores" [value]="profesor.id">{{profesor.nombre}} {{profesor.apellido}}</option>
+                    </select>
+                </div>      
 
                 <div class="form-group">
                     <label class="form-control-label">Horario Inicio</label>
-                    <input type="text" class="form-control" name="horarioInicio"
+                    <input type="time" class="form-control" name="horarioInicio"
                            formControlName="horarioInicio">
 
                     <div *ngIf="editForm.get('horarioInicio')!.invalid && (editForm.get('horarioInicio')!.dirty || editForm.get('horarioInicio')!.touched)">
@@ -51,7 +44,7 @@
 
                 <div class="form-group">
                     <label class="form-control-label">Horario Fin</label>
-                    <input type="text" class="form-control" name="horarioFin"
+                    <input type="time" class="form-control" name="horarioFin"
                            formControlName="horarioFin">
 
                     <div *ngIf="editForm.get('horarioFin')!.invalid && (editForm.get('horarioFin')!.dirty || editForm.get('horarioFin')!.touched)">
@@ -81,6 +74,10 @@
                     </div>
                 </div>
 
+                <div class="form-group">
+                    <label>Materia</label>
+                    <input type="number" class="form-control" name="MateriasIdMaterias " formControlName="MateriasIdMaterias">
+                </div>
                
             </div>
 

@@ -1,11 +1,12 @@
 import { IMateria } from '../materia/materia.model';
+import { IProfesor } from '../profesor/profesor.model';
 
 export interface IExamen {
   idExamenes?: any;
   fecha?: Date;
   horarioInicio?: string;
   horarioFin?: string;
-  docenteAsignado?: string;
+  docenteAsignado?: IProfesor;
   inicioInscripcion?: Date;
   finInscripcion?: Date;
   MateriasIdMaterias?: any;
@@ -20,7 +21,7 @@ export class Examen implements IExamen {
     public fecha?: Date,
     public horarioInicio?: string,
     public horarioFin?: string,
-    public docenteAsignado?: string,
+    public docenteAsignado?: IProfesor,
     public inicioInscripcion?: Date,
     public finInscripcion?: Date,
     public MateriasIdMaterias?: any,
