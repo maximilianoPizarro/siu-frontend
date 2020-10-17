@@ -1,0 +1,43 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="myCursoLabel">
+                Crear o modificar un Curso
+            </h2>
+
+            <div *ngIf="curso">
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!curso.idCurso">
+                    <label>ID</label>
+                    <input type="text" class="form-control" name="idCurso" formControlName="idCurso" readonly>
+                </div>
+
+                <div class="form-group">
+                    <label>Docente Asignado</label>
+                    <select  class="form-control" multiple name="datosDocente" formControlName="datosDocente">
+                        <option *ngFor="let profesor of profesores" [value]="profesor">{{profesor.nombre}} {{profesor.apellido}}</option>
+                    </select>
+                </div>      
+
+                <div class="form-group">
+                    <label>Materias</label>
+                    <select  class="form-control" multiple name="MateriasIdMaterias" formControlName="MateriasIdMaterias">
+                        <option *ngFor="let materia of materias" [value]="materia.idMaterias">{{materia.nombre}}</option>
+                    </select>
+                </div>      
+
+            </div>
+
+            <div *ngIf="curso">
+                <button type="button" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+
+                <button type="submit" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

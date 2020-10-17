@@ -46,6 +46,14 @@ import { Authority } from 'app/shared/constants/authority.constants';
           authorities: [Authority.ADMIN],
         },
       },
+      {
+        path: 'curso-manager',
+        loadChildren: () => import('./curso-manager/curso-management.module').then(m => m.CursoManagementModule),
+        data: {
+          pageTitle: 'cursos',
+          authorities: [Authority.ADMIN],
+        },
+      },
     ]),
   ],
 })

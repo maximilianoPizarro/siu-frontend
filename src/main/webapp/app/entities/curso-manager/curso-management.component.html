@@ -1,0 +1,63 @@
+<div>
+    <h2>
+        <span id="curso-management-page-heading">Cursos</span>
+
+        <button class="btn btn-primary float-right jh-create-entity" [routerLink]="['./new']">
+            <fa-icon icon="plus"></fa-icon> <span>Agregar nueva Curso</span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="table-responsive" *ngIf="cursos">
+        <table class="table table-striped" aria-describedby="curso-management-page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="transition.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="nombre"><span>Nombre</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="departamento"><span>Departamento</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="createdAt"><span>Creado</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="updatedAt"><span>Actualizado</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody *ngIf="cursos">
+                <tr *ngFor="let curso of cursos">
+                    <td><a [routerLink]="['./', curso.idCurso, 'view']">{{ curso.idCurso }}</a></td>
+                    <td>{{ curso.materia?.nombre }}</td>
+                    <td>{{ curso.datosDocente?.nombre }} {{ curso.datosDocente?.apellido }}</td>                   
+                    <td>{{ curso.createdAt }}</td>
+                    <td>{{ curso.updatedAt }}</td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['./', curso.idCurso, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['./', curso.idCurso, 'edit']"
+                                    queryParamsHandling="merge"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline">Edit</span>
+                            </button>
+
+                            <button type="button" (click)="deleteCurso(curso)"
+                                    class="btn btn-danger btn-sm" 
+                                    >
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
