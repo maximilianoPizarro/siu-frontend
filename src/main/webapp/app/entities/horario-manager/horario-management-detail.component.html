@@ -1,0 +1,29 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="horario">
+            <h2>
+                <span>horario</span> [<b>{{ horario.idHorario }}</b>]
+            </h2>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span>Horario</span></dt>
+                <dd>
+                    <span>{{ horario.idHorario }}</span>
+                </dd>
+
+                <dt><span>Día</span></dt>
+                <dd>{{ horario.dia }}</dd>
+
+                <dt><span>Horario inicio</span></dt>
+                <dd>{{ horario.horarioInicio }}</dd>
+
+                <dt><span>Horario fin</span></dt>
+                <dd>{{ horario.horarioFin }}</dd>
+            </dl>
+
+            <button type="submit" routerLink="../../" class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+            </button>
+        </div>
+    </div>
+</div>

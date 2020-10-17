@@ -1,0 +1,67 @@
+<div>
+    <h2>
+        <span id="horario-management-page-heading">Horarios</span>
+
+        <button class="btn btn-primary float-right jh-create-entity" [routerLink]="['./new']">
+            <fa-icon icon="plus"></fa-icon> <span>Agregar Horario Cursadas</span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="table-responsive" *ngIf="horarios">
+        <table class="table table-striped" aria-describedby="horario-management-page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="transition.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="dia"><span>Día</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="horarioInicio"><span>Horario Inicio</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="horarioFin"><span>Horario Fin</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="datosDocente"><span>Docente Asignado</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="materia"><span>Materia</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="createdAt"><span>Creado</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody *ngIf="horarios">
+                <tr *ngFor="let horario of horarios">
+                    <td><a [routerLink]="['./', horario.idHorario, 'view']">{{ horario.idHorario }}</a></td>
+                    <td>{{ horario.dia }}</td>
+                    <td>{{ horario.horarioInicio }}</td> 
+                    <td>{{ horario.horarioFin }}</td>
+                    <td>{{ horario.curso?.datosDocente?.nombre }} {{ horario.curso?.datosDocente?.apellido }}</td>
+                    <td>{{ horario.curso?.MateriasIdMaterias }}</td>                   
+                    <td>{{ horario.createdAt }}</td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['./', horario.idHorario, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['./', horario.idHorario, 'edit']"
+                                    queryParamsHandling="merge"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline">Edit</span>
+                            </button>
+
+                            <button type="button" (click)="deleteHorario(horario)"
+                                    class="btn btn-danger btn-sm" 
+                                    >
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>

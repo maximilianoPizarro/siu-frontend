@@ -54,6 +54,14 @@ import { Authority } from 'app/shared/constants/authority.constants';
           authorities: [Authority.ADMIN],
         },
       },
+      {
+        path: 'horario-manager',
+        loadChildren: () => import('./horario-manager/horario-management.module').then(m => m.HorarioManagementModule),
+        data: {
+          pageTitle: 'Horarios Cursada',
+          authorities: [Authority.ADMIN],
+        },
+      },
     ]),
   ],
 })
