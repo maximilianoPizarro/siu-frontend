@@ -16,10 +16,9 @@
             <thead>
                 <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="transition.bind(this)">
                     <th scope="col"  jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="nombre"><span>Nombre</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="departamento"><span>Departamento</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="materia"><span>Materia</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="datosDocente"><span>Docente Asignado</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="createdAt"><span>Creado</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="updatedAt"><span>Actualizado</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -29,7 +28,6 @@
                     <td>{{ curso.materia?.nombre }}</td>
                     <td>{{ curso.datosDocente?.nombre }} {{ curso.datosDocente?.apellido }}</td>                   
                     <td>{{ curso.createdAt }}</td>
-                    <td>{{ curso.updatedAt }}</td>
                     <td class="text-right">
                         <div class="btn-group">
                             <button type="submit"
