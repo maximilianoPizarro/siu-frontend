@@ -26,7 +26,7 @@ const LAYOUT_ROUTES = [navbarRoute, ...errorRoute];
           data: {
             authorities: [Authority.ADMIN],
           },
-          loadChildren: () => import('./inscripciones/inscripcion.module').then(m => m.UnLaSiuEntityModule),
+          loadChildren: () => import('./inscripciones/inscripcion.module').then(m => m.UnLaSiuInscripcionesModule),
         },
         {
           path: 'entities',

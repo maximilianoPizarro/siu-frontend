@@ -37,7 +37,7 @@ export class InscripcionesService {
 
   traerExamenesParaInscripcion(req?: Pagination): Observable<HttpResponse<IExamenes[]>> {
     const options = createRequestOption(req);
-    return this.http.get<IExamenes[]>(`${this.resourceUrl}traerMateriasParaInscripcion`, { params: options, observe: 'response' });
+    return this.http.get<IExamenes[]>(`${this.resourceUrl}traerExamenesParaInscripcion`, { params: options, observe: 'response' });
   }
 
   enviarNotificacionExamen(): Observable<IExamenes[]> {

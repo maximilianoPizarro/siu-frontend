@@ -25,4 +25,4 @@ import { Authority } from 'app/shared/constants/authority.constants';
     ]),
   ],
 })
-export class UnLaSiuEntityModule {}
+export class UnLaSiuInscripcionesModule {}
