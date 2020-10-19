@@ -19,6 +19,11 @@
 
                 <dt><span>Horario fin</span></dt>
                 <dd>{{ horario.horarioFin }}</dd>
+
+                <dt><span>Docente Asignado</span></dt>
+                <dd>{{ horario.curso?.datosDocente?.nombre }} {{ horario.curso?.datosDocente?.apellido }}</dd>
+                
+
             </dl>
 
             <button type="submit" routerLink="../../" class="btn btn-info">

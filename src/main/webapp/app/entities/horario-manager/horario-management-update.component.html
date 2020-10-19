@@ -38,6 +38,13 @@
                            formControlName="horarioFin">
                 </div>
 
+                <div class="form-group">
+                    <label>Curso</label>
+                    <select  class="form-control" multiple name="CursoIdCurso" formControlName="CursoIdCurso">
+                        <option *ngFor="let curso of cursos" [value]="curso.idCurso">{{curso.materia?.nombre}}</option>
+                    </select>
+                </div>                    
+
             </div>
 
             <div *ngIf="horario">
