@@ -22,6 +22,13 @@ const LAYOUT_ROUTES = [navbarRoute, ...errorRoute];
           loadChildren: () => import('./admin/admin-routing.module').then(m => m.AdminRoutingModule),
         },
         {
+          path: 'inscripciones',
+          data: {
+            authorities: [Authority.ADMIN],
+          },
+          loadChildren: () => import('./inscripciones/inscripcion.module').then(m => m.UnLaSiuEntityModule),
+        },
+        {
           path: 'entities',
           data: {
             authorities: [Authority.ADMIN],
