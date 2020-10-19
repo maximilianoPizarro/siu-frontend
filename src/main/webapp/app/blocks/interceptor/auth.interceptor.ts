@@ -3,14 +3,20 @@ import { Observable } from 'rxjs';
 import { LocalStorageService, SessionStorageService } from 'ngx-webstorage';
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
 
-import { SERVER_API_URL } from 'app/app.constants';
+import { SERVER_API_URL, SERVER_API_ESTUDIANTES } from 'app/app.constants';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
   constructor(private localStorage: LocalStorageService, private sessionStorage: SessionStorageService) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if (!request || !request.url || (request.url.startsWith('http') && !(SERVER_API_URL && request.url.startsWith(SERVER_API_URL)))) {
+    if (
+      !request ||
+      !request.url ||
+      (request.url.startsWith('http') &&
+        !(SERVER_API_URL && request.url.startsWith(SERVER_API_URL)) &&
+        !(SERVER_API_ESTUDIANTES && request.url.startsWith(SERVER_API_ESTUDIANTES)))
+    ) {
       return next.handle(request);
     }
 

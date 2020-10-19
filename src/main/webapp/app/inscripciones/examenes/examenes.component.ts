@@ -7,14 +7,14 @@ import { JhiEventManager } from 'ng-jhipster';
 
 import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
 import { InscripcionesService } from 'app/core/inscripciones/inscripciones.service';
-import { Examenes, IExamenes } from 'app/core/inscripciones/examenes.model';
+import { Materias } from 'app/core/inscripciones/materias.model';
 
 @Component({
   selector: 'jhi-examenes-mgmt',
   templateUrl: './examenes.component.html',
 })
 export class ExamenesManagementComponent implements OnInit, OnDestroy {
-  lstexamenes: Examenes[] | null = null;
+  lstexamenes: Materias[] | null = null;
   examenesListSubscription?: Subscription;
   totalItems = 0;
   itemsPerPage = ITEMS_PER_PAGE;
@@ -63,8 +63,12 @@ export class ExamenesManagementComponent implements OnInit, OnDestroy {
 
   private loadAll(): void {
     this.inscripcionesService
-      .traerExamenesParaInscripcion()
-      .subscribe((res: HttpResponse<Examenes[]>) => this.onSuccess(res.body, res.headers));
+      .traerExamenesParaInscripcion({
+        page: this.page - 1,
+        size: this.itemsPerPage,
+        sort: this.sort(),
+      })
+      .subscribe((res: HttpResponse<Materias[]>) => this.onSuccess(res.body, res.headers));
   }
 
   private sort(): string[] {
@@ -75,8 +79,8 @@ export class ExamenesManagementComponent implements OnInit, OnDestroy {
     return result;
   }
 
-  private onSuccess(examenes: Examenes[] | null, headers: HttpHeaders): void {
+  private onSuccess(lstexamenes: Materias[] | null, headers: HttpHeaders): void {
     this.totalItems = Number(headers.get('X-Total-Count'));
-    this.lstexamenes = examenes;
+    this.lstexamenes = lstexamenes;
   }
 }
