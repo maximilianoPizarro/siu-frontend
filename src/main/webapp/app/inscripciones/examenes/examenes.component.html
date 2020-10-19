@@ -1,0 +1,50 @@
+<div>
+    <h2>
+        <span id="examenes-management-page-heading">Inscripciones a Examenes</span>
+
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="table-responsive" *ngIf="lstexamenes">
+        <table class="table table-striped" aria-describedby="examenes-management-page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="transition.bind(this)">
+                    <th scope="col"  jhiSortBy="idInscriptosExamen"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="examenesIdExamenes"><span>ID Examen</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="datosAlumno"><span>Estudiante</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="nota"><span>Nota</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="asistencia"><span>Asistencia</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="recordatorio"><span>Recordatorio</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody *ngIf="lstexamenes">
+                <tr *ngFor="let examenes of lstexamenes">
+                    <td><a [routerLink]="['./', examenes.idInscriptosExamen, 'view']">{{ examenes.idInscriptosExamen }}</a></td>
+                    <td>{{ examenes.examenesIdExamenes }}</td>
+                    <td>{{ examenes.datosAlumno }}</td>                 
+                    <td>{{ examenes.nota }}</td>                    
+                    <td>{{ examenes.asistencia }}</td>
+                    <td>{{ examenes.recordatorio }}</td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="lstexamenes">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="transition()"></ngb-pagination>
+        </div>
+    </div>
+</div>

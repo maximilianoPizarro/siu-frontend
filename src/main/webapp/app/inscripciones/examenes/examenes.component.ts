@@ -14,7 +14,7 @@ import { Examenes, IExamenes } from 'app/core/inscripciones/examenes.model';
   templateUrl: './examenes.component.html',
 })
 export class ExamenesManagementComponent implements OnInit, OnDestroy {
-  examenes: Examenes[] | null = null;
+  lstexamenes: Examenes[] | null = null;
   examenesListSubscription?: Subscription;
   totalItems = 0;
   itemsPerPage = ITEMS_PER_PAGE;
@@ -77,6 +77,6 @@ export class ExamenesManagementComponent implements OnInit, OnDestroy {
 
   private onSuccess(examenes: Examenes[] | null, headers: HttpHeaders): void {
     this.totalItems = Number(headers.get('X-Total-Count'));
-    this.examenes = examenes;
+    this.lstexamenes = examenes;
   }
 }
