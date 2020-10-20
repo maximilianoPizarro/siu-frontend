@@ -24,9 +24,8 @@ const LAYOUT_ROUTES = [navbarRoute, ...errorRoute];
         {
           path: 'inscripciones',
           data: {
-            authorities: [Authority.ADMIN],
+            authorities: [Authority.ADMIN, Authority.ESTUDIANTE],
           },
-          canActivate: [UserRouteAccessService],
           loadChildren: () => import('./inscripciones/inscripcion.module').then(m => m.UnLaSiuInscripcionesModule),
         },
         {

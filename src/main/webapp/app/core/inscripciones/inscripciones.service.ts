@@ -18,8 +18,9 @@ export class InscripcionesService {
     return this.http.post<ICursadas>(`${this.resourceUrl}inscribirEstudianteCursada`, cursada);
   }
 
-  traerMateriasParaInscripcion(): Observable<ICursadas[]> {
-    return this.http.get<ICursadas[]>(`${this.resourceUrl}traerMateriasParaInscripcion`);
+  traerMateriasParaInscripcion(req?: Pagination): Observable<HttpResponse<IMaterias[]>> {
+    const options = createRequestOption(req);
+    return this.http.get<IMaterias[]>(`${this.resourceUrl}traerMateriasParaInscripcion`, { params: options, observe: 'response' });
   }
 
   bajaInscripcionMateria(): Observable<{}> {

@@ -11,7 +11,7 @@ import { Authority } from 'app/shared/constants/authority.constants';
         loadChildren: () => import('./cursadas/cursadas.module').then(m => m.CursadasManagementModule),
         data: {
           pageTitle: 'cursadas',
-          authorities: [Authority.ADMIN],
+          authorities: [Authority.ADMIN, Authority.ESTUDIANTE],
         },
       },
       {
@@ -19,7 +19,7 @@ import { Authority } from 'app/shared/constants/authority.constants';
         loadChildren: () => import('./examenes/examenes.module').then(m => m.ExamenesManagementModule),
         data: {
           pageTitle: 'examenes',
-          authorities: [Authority.ADMIN],
+          authorities: [Authority.ADMIN, Authority.ESTUDIANTE],
         },
       },
     ]),

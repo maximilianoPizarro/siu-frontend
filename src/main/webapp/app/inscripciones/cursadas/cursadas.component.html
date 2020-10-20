@@ -1,0 +1,48 @@
+<div>
+    <h2>
+        <span id="cursadas-management-page-heading">Inscripciones a Materias</span>
+
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="table-responsive" *ngIf="lstcursadas">
+        <table class="table table-striped" aria-describedby="cursadas-management-page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="transition.bind(this)">
+                    <th scope="col"  jhiSortBy="materia"><span>Materia</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="curso"><span>Curso</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="fecha"><span>Fecha</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="horarioInicio"><span>Horario</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="nombreProfesor"><span>Docente Asignado</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody *ngIf="lstcursadas">
+                <tr *ngFor="let cursadas of lstcursadas">
+                    <td>{{ cursadas.materia }}</td>
+                    <td>{{ cursadas.curso }}</td>                 
+                    <td>{{ cursadas.fecha }}</td>                    
+                    <td>{{ cursadas.horarioInicio }}</td>
+                    <td>{{ cursadas.nombreProfesor }} {{ cursadas.apellidoProfesor }}</td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="lstcursadas">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="transition()"></ngb-pagination>
+        </div>
+    </div>
+</div>

@@ -16,7 +16,7 @@
                     </span>
                 </a>
             </li>
-            <li *jhiHasAnyAuthority="'ROLE_ADMIN'"  ngbDropdown class="nav-item dropdown pointer" display="dynamic" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            <li *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_ESTUDIANTE']"  ngbDropdown class="nav-item dropdown pointer" display="dynamic" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
                 <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="entity-menu">
                     <span>
                         <fa-icon icon="th-list"></fa-icon>
@@ -28,10 +28,15 @@
                 <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="entity-menu">
                     <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
                     <a class="dropdown-item" routerLink="inscripciones/examenes" routerLinkActive="active" (click)="collapseNavbar()">
-                        <fa-icon icon="user" [fixedWidth]="true"></fa-icon>
+                        <fa-icon icon="book" [fixedWidth]="true"></fa-icon>
                         <span>Examenes</span>
+                    </a>                
+                    <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
+                    <a class="dropdown-item" routerLink="inscripciones/cursadas" routerLinkActive="active" (click)="collapseNavbar()">
+                        <fa-icon icon="book" [fixedWidth]="true"></fa-icon>
+                        <span>Materias</span>
                     </a>
-                </ul>
+                </ul>                
             </li>        
             <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
             <li *jhiHasAnyAuthority="'ROLE_ADMIN'"  ngbDropdown class="nav-item dropdown pointer" display="dynamic" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
