@@ -6,7 +6,7 @@ import { ExamenesManagementComponent } from './examenes.component';
 import { examenesManagementRoute } from './examenes.route';
 
 @NgModule({
-  imports: [UnLaSiuInscripcionesModule, UnLaSiuSharedModule, RouterModule.forChild(examenesManagementRoute)],
+  imports: [UnLaSiuSharedModule, RouterModule.forChild(examenesManagementRoute)],
   declarations: [ExamenesManagementComponent],
   entryComponents: [],
 })
