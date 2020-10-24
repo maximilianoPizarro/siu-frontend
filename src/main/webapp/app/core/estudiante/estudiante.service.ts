@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 import { SERVER_API_URL } from 'app/app.constants';
 import { createRequestOption, Pagination } from 'app/shared/util/request-util';
-import { IEstudiante } from './estudiante.model';
+import { IEstudiante, IEstudianteCreate } from './estudiante.model';
 
 @Injectable({ providedIn: 'root' })
 export class EstudianteService {
@@ -12,8 +12,8 @@ export class EstudianteService {
 
   constructor(private http: HttpClient) {}
 
-  create(estudiante: IEstudiante): Observable<IEstudiante> {
-    return this.http.post<IEstudiante>(this.resourceUrl, estudiante);
+  create(estudiante: IEstudianteCreate): Observable<IEstudianteCreate> {
+    return this.http.post<IEstudianteCreate>(this.resourceUrl, estudiante);
   }
 
   update(estudiante: IEstudiante): Observable<IEstudiante> {

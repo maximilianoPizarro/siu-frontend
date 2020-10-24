@@ -1,3 +1,5 @@
+import { IUser } from '../user/user.model';
+
 export interface IEstudiante {
   id?: any;
   nombre?: string;
@@ -7,7 +9,16 @@ export interface IEstudiante {
   telefono?: string;
 }
 
-export class Estudiante implements IEstudiante {
+export interface IEstudianteCreate {
+  nombre?: string;
+  apellido?: string;
+  domicilio?: string;
+  email?: string;
+  telefono?: string;
+  user?: IUser;
+}
+
+export class Estudiante implements IEstudiante, IEstudianteCreate {
   constructor(
     public id?: any,
     public nombre?: string,
@@ -15,6 +26,7 @@ export class Estudiante implements IEstudiante {
     public dni?: string,
     public domicilio?: string,
     public email?: string,
-    public telefono?: string
+    public telefono?: string,
+    public user?: IUser
   ) {}
 }

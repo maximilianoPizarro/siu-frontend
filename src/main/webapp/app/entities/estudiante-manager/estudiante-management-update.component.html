@@ -104,6 +104,13 @@
                     </div>
                 </div>
 
+                <div class="form-group">
+                    <label>Usuario</label>
+                    <select  class="form-control" multiple name="user" formControlName="user">
+                        <option *ngFor="let user of users" [value]="user">{{user.login}}</option>
+                    </select>
+                </div>                 
+
             </div>
 
             <div *ngIf="estudiante">

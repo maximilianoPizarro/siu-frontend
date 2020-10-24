@@ -12,9 +12,9 @@
         <table class="table table-striped" aria-describedby="examenes-management-page-heading">
             <thead>
                 <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="transition.bind(this)">
-                    <th scope="col"  jhiSortBy="materia"><span>Materia</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="curso"><span>Curso</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="fecha"><span>Fecha</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="materia"><span>Materia</span> <fa-icon icon="sort"></fa-icon></th>                                        
                     <th scope="col"  jhiSortBy="horarioInicio"><span>Horario</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="nombreProfesor"><span>Docente Asignado</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"></th>
@@ -22,9 +22,9 @@
             </thead>
             <tbody *ngIf="lstexamenes">
                 <tr *ngFor="let examenes of lstexamenes">
-                    <td>{{ examenes.materia }}</td>
-                    <td>{{ examenes.curso }}</td>                 
-                    <td>{{ examenes.fecha }}</td>                    
+                    <td>{{ examenes.curso }}</td>
+                    <td>{{ examenes.fecha }}</td>
+                    <td>{{ examenes.materia }}</td>                                                                             
                     <td>{{ examenes.horarioInicio }}</td>
                     <td>{{ examenes.nombreProfesor }} {{ examenes.apellidoProfesor }}</td>
                     <td class="text-right">

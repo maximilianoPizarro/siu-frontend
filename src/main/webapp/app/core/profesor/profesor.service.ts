@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 import { SERVER_API_URL } from 'app/app.constants';
 import { createRequestOption, Pagination } from 'app/shared/util/request-util';
-import { IProfesor } from './profesor.model';
+import { IProfesor, IProfesorCreate } from './profesor.model';
 
 @Injectable({ providedIn: 'root' })
 export class ProfesorService {
@@ -12,8 +12,8 @@ export class ProfesorService {
 
   constructor(private http: HttpClient) {}
 
-  create(profesor: IProfesor): Observable<IProfesor> {
-    return this.http.post<IProfesor>(this.resourceUrl, profesor);
+  create(profesor: IProfesorCreate): Observable<IProfesorCreate> {
+    return this.http.post<IProfesorCreate>(this.resourceUrl, profesor);
   }
 
   update(profesor: IProfesor): Observable<IProfesor> {

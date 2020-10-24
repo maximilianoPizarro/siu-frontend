@@ -22,6 +22,7 @@
                     <th scope="col"  jhiSortBy="domicilio"><span>Domicilio</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="email"><span>Email</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="telefono"><span>Telefono</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="login"><span>Login</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -34,6 +35,7 @@
                     <td>{{ estudiante.domicilio }}</td>                    
                     <td>{{ estudiante.email }}</td>
                     <td>{{ estudiante.telefono }}</td>
+                    <td>{{estudiante.user?.login }}</td>
                     <td class="text-right">
                         <div class="btn-group">
                             <button type="submit"

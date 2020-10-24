@@ -1,17 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { HttpHeaders, HttpResponse } from '@angular/common/http';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
-import { Estudiante } from 'app/core/estudiante/estudiante.model';
+import { Estudiante, IEstudianteCreate } from 'app/core/estudiante/estudiante.model';
 import { EstudianteService } from 'app/core/estudiante/estudiante.service';
+import { IUser } from 'app/core/user/user.model';
+import { UserService } from 'app/core/user/user.service';
 
 @Component({
   selector: 'jhi-estudiante-mgmt-update',
   templateUrl: './estudiante-management-update.component.html',
 })
-export class EstudianteManagementUpdateComponent implements OnInit {
+export class EstudianteManagementUpdateComponent implements OnInit, OnDestroy {
   estudiante!: Estudiante;
+  estudianteCreate!: IEstudianteCreate;
+  users: IUser[] | null = null;
+  usersListSubscription?: any;
   isSaving = false;
+  totalItems = 0;
 
   editForm = this.fb.group({
     id: [],
@@ -21,20 +28,37 @@ export class EstudianteManagementUpdateComponent implements OnInit {
     email: ['', [Validators.minLength(5), Validators.maxLength(254), Validators.email]],
     domicilio: ['', [Validators.maxLength(50)]],
     telefono: ['', [Validators.maxLength(50)]],
+    user: [],
   });
 
-  constructor(private estudianteService: EstudianteService, private route: ActivatedRoute, private fb: FormBuilder) {}
+  constructor(
+    private estudianteService: EstudianteService,
+    private userService: UserService,
+    private route: ActivatedRoute,
+    private fb: FormBuilder
+  ) {}
 
   ngOnInit(): void {
+    this.loadAllUsers();
     this.route.data.subscribe(({ estudiante }) => {
       if (estudiante) {
         this.estudiante = estudiante;
-        if (this.estudiante.id === undefined) {
-          this.estudiante.id = 0;
-        }
         this.updateForm(estudiante);
       }
     });
+  }
+
+  ngOnDestroy(): void {
+    this.usersListSubscription.unsubscribe();
+  }
+
+  private loadAllUsers(): void {
+    this.usersListSubscription = this.userService.query().subscribe((res: HttpResponse<IUser[]>) => this.onSuccess(res.body, res.headers));
+  }
+
+  private onSuccess(users: IUser[] | null, headers: HttpHeaders): void {
+    this.totalItems = Number(headers.get('X-Total-Count'));
+    this.users = users;
   }
 
   previousState(): void {
@@ -50,7 +74,8 @@ export class EstudianteManagementUpdateComponent implements OnInit {
         () => this.onSaveError()
       );
     } else {
-      this.estudianteService.create(this.estudiante).subscribe(
+      this.estudianteCreate = this.estudiante;
+      this.estudianteService.create(this.estudianteCreate).subscribe(
         () => this.onSaveSuccess(),
         () => this.onSaveError()
       );
@@ -65,6 +90,7 @@ export class EstudianteManagementUpdateComponent implements OnInit {
       domicilio: estudiante.domicilio,
       email: estudiante.email,
       telefono: estudiante.telefono,
+      user: estudiante.user,
     });
   }
 
@@ -75,6 +101,7 @@ export class EstudianteManagementUpdateComponent implements OnInit {
     estudiante.domicilio = this.editForm.get(['domicilio'])!.value;
     estudiante.email = this.editForm.get(['email'])!.value;
     estudiante.telefono = this.editForm.get(['telefono'])!.value;
+    estudiante.user = this.editForm.get(['user'])!.value[0];
   }
 
   private onSaveSuccess(): void {

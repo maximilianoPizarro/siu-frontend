@@ -1,17 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { HttpHeaders, HttpResponse } from '@angular/common/http';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
-import { Profesor } from 'app/core/profesor/profesor.model';
+import { IProfesorCreate, Profesor } from 'app/core/profesor/profesor.model';
 import { ProfesorService } from 'app/core/profesor/profesor.service';
+import { IUser } from 'app/core/user/user.model';
+import { UserService } from 'app/core/user/user.service';
 
 @Component({
   selector: 'jhi-profesor-mgmt-update',
   templateUrl: './profesor-management-update.component.html',
 })
-export class ProfesorManagementUpdateComponent implements OnInit {
+export class ProfesorManagementUpdateComponent implements OnInit, OnDestroy {
   profesor!: Profesor;
+  profesorCreate!: IProfesorCreate;
+  users: IUser[] | null = null;
+  usersListSubscription?: any;
   isSaving = false;
+  totalItems = 0;
 
   editForm = this.fb.group({
     id: [],
@@ -21,20 +28,37 @@ export class ProfesorManagementUpdateComponent implements OnInit {
     titulo: ['', [Validators.maxLength(50)]],
     domicilio: ['', [Validators.maxLength(50)]],
     telefono: ['', [Validators.maxLength(50)]],
+    user: [],
   });
 
-  constructor(private profesorService: ProfesorService, private route: ActivatedRoute, private fb: FormBuilder) {}
+  constructor(
+    private profesorService: ProfesorService,
+    private userService: UserService,
+    private route: ActivatedRoute,
+    private fb: FormBuilder
+  ) {}
 
   ngOnInit(): void {
+    this.loadAllUsers();
     this.route.data.subscribe(({ profesor }) => {
       if (profesor) {
         this.profesor = profesor;
-        if (this.profesor.id === undefined) {
-          this.profesor.id = 0;
-        }
         this.updateForm(profesor);
       }
     });
+  }
+
+  ngOnDestroy(): void {
+    this.usersListSubscription.unsubscribe();
+  }
+
+  private loadAllUsers(): void {
+    this.usersListSubscription = this.userService.query().subscribe((res: HttpResponse<IUser[]>) => this.onSuccess(res.body, res.headers));
+  }
+
+  private onSuccess(users: IUser[] | null, headers: HttpHeaders): void {
+    this.totalItems = Number(headers.get('X-Total-Count'));
+    this.users = users;
   }
 
   previousState(): void {
@@ -50,7 +74,8 @@ export class ProfesorManagementUpdateComponent implements OnInit {
         () => this.onSaveError()
       );
     } else {
-      this.profesorService.create(this.profesor).subscribe(
+      this.profesorCreate = this.profesor;
+      this.profesorService.create(this.profesorCreate).subscribe(
         () => this.onSaveSuccess(),
         () => this.onSaveError()
       );
@@ -66,6 +91,7 @@ export class ProfesorManagementUpdateComponent implements OnInit {
       domicilio: profesor.domicilio,
       titulo: profesor.titulo,
       telefono: profesor.telefono,
+      user: profesor.user,
     });
   }
 
@@ -76,6 +102,7 @@ export class ProfesorManagementUpdateComponent implements OnInit {
     profesor.domicilio = this.editForm.get(['domicilio'])!.value;
     profesor.titulo = this.editForm.get(['titulo'])!.value;
     profesor.telefono = this.editForm.get(['telefono'])!.value;
+    profesor.user = this.editForm.get(['user'])!.value[0];
   }
 
   private onSaveSuccess(): void {

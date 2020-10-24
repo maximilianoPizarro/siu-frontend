@@ -12,9 +12,9 @@
         <table class="table table-striped" aria-describedby="cursadas-management-page-heading">
             <thead>
                 <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="transition.bind(this)">
-                    <th scope="col"  jhiSortBy="materia"><span>Materia</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="curso"><span>Curso</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="fecha"><span>Fecha</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="materia"><span>Materia</span> <fa-icon icon="sort"></fa-icon></th>                    
+                    <th scope="col"  jhiSortBy="fecha"><span>Día</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="horarioInicio"><span>Horario</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="nombreProfesor"><span>Docente Asignado</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"></th>
@@ -22,9 +22,9 @@
             </thead>
             <tbody *ngIf="lstcursadas">
                 <tr *ngFor="let cursadas of lstcursadas">
-                    <td>{{ cursadas.materia }}</td>
-                    <td>{{ cursadas.curso }}</td>                 
-                    <td>{{ cursadas.fecha }}</td>                    
+                    <td>{{ cursadas.curso }}</td>
+                    <td>{{ cursadas.materia }}</td>                                     
+                    <td>{{ cursadas.dia }}</td>                    
                     <td>{{ cursadas.horarioInicio }}</td>
                     <td>{{ cursadas.nombreProfesor }} {{ cursadas.apellidoProfesor }}</td>
                     <td class="text-right">
