@@ -29,6 +29,12 @@
                     <td>{{ examenes.nombreProfesor }} {{ examenes.apellidoProfesor }}</td>
                     <td class="text-right">
                         <div class="btn-group">
+                            <button type="button" (click)="incribirse(examenes)"
+                                    class="btn btn-primary" 
+                                    >
+                                <fa-icon icon="save"></fa-icon>
+                                <span class="d-none d-md-inline">Inscribirme</span>
+                            </button>                            
                         </div>
                     </td>
                 </tr>

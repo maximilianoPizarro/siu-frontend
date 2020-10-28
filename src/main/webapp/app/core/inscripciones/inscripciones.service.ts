@@ -7,6 +7,7 @@ import { IExamenes } from './examenes.model';
 import { ICursadaIncripcion } from './cursadainscripcion.model';
 import { IMaterias } from './materias.model';
 import { createRequestOption, Pagination } from 'app/shared/util/request-util';
+import { IExamenIncripcion } from './exameninscripcion.model';
 
 @Injectable({ providedIn: 'root' })
 export class InscripcionesService {
@@ -27,8 +28,8 @@ export class InscripcionesService {
     return this.http.delete(`${this.resourceUrl}bajaInscripcionMateria`);
   }
 
-  inscribirEstudianteExamen(cursada: IExamenes): Observable<IExamenes> {
-    return this.http.post<IExamenes>(`${this.resourceUrl}inscribirEstudianteExamen`, cursada);
+  inscribirEstudianteExamen(cursada: IExamenIncripcion): Observable<IExamenIncripcion> {
+    return this.http.post<IExamenIncripcion>(`${this.resourceUrl}inscribirEstudianteExamen`, cursada);
   }
 
   bajaInscripcionExamen(): Observable<{}> {
