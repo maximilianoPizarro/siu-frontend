@@ -1,0 +1,11 @@
+version: '2'
+services:
+  siu-frontend:
+    build: .
+    image: siu-frontend
+    environment:
+      - NODE_ENV=prod
+      - SERVER_API_ESTUDIANTES=https://estudiante-app.herokuapp.com/
+      - SERVER_API_URL=https://administrador-unla.herokuapp.com/
+    ports:
+      - '8080:9000'

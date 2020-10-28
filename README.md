@@ -2,6 +2,10 @@
 
 This application was generated using JHipster 6.10.1, you can find documentation and help at [https://www.jhipster.tech/documentation-archive/v6.10.1](https://www.jhipster.tech/documentation-archive/v6.10.1).
 
+## Docker
+
+         docker-compose up -d
+
 ## Development
 
 Before you can build this project, you must install and configure the following dependencies on your machine:
@@ -125,5 +129,4 @@ For more information, refer to the [Running tests page][].
 [protractor]: https://angular.github.io/protractor/
 [leaflet]: https://leafletjs.com/
 [definitelytyped]: https://definitelytyped.org/
-
-https://bootswatch.com/slate/
+[style]: https://bootswatch.com/slate/
