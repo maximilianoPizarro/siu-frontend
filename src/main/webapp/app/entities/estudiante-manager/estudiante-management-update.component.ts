@@ -87,6 +87,7 @@ export class EstudianteManagementUpdateComponent implements OnInit, OnDestroy {
       id: estudiante.id,
       nombre: estudiante.nombre,
       apellido: estudiante.apellido,
+      dni: estudiante.dni,
       domicilio: estudiante.domicilio,
       email: estudiante.email,
       telefono: estudiante.telefono,

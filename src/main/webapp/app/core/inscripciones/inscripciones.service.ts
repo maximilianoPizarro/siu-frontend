@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 import { SERVER_API_ESTUDIANTES } from 'app/app.constants';
 import { IExamenes } from './examenes.model';
-import { ICursadas } from './cursadas.model';
+import { ICursadaIncripcion } from './cursadainscripcion.model';
 import { IMaterias } from './materias.model';
 import { createRequestOption, Pagination } from 'app/shared/util/request-util';
 
@@ -14,8 +14,8 @@ export class InscripcionesService {
 
   constructor(private http: HttpClient) {}
 
-  inscribirEstudianteCursada(cursada: ICursadas): Observable<ICursadas> {
-    return this.http.post<ICursadas>(`${this.resourceUrl}inscribirEstudianteCursada`, cursada);
+  inscribirEstudianteCursada(cursada: ICursadaIncripcion): Observable<ICursadaIncripcion> {
+    return this.http.post<ICursadaIncripcion>(`${this.resourceUrl}inscribirEstudianteCursada`, cursada);
   }
 
   traerMateriasParaInscripcion(req?: Pagination): Observable<HttpResponse<IMaterias[]>> {

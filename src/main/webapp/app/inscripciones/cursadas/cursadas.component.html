@@ -1,6 +1,6 @@
 <div>
     <h2>
-        <span id="cursadas-management-page-heading">Inscripciones a Materias</span>
+        <span id="cursadas-management-page-heading">Inscripciones a Materias </span>
 
     </h2>
 
@@ -12,7 +12,7 @@
         <table class="table table-striped" aria-describedby="cursadas-management-page-heading">
             <thead>
                 <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="transition.bind(this)">
-                    <th scope="col"  jhiSortBy="curso"><span>Curso</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="curso"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="materia"><span>Materia</span> <fa-icon icon="sort"></fa-icon></th>                    
                     <th scope="col"  jhiSortBy="fecha"><span>Día</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="horarioInicio"><span>Horario</span> <fa-icon icon="sort"></fa-icon></th>
@@ -29,6 +29,14 @@
                     <td>{{ cursadas.nombreProfesor }} {{ cursadas.apellidoProfesor }}</td>
                     <td class="text-right">
                         <div class="btn-group">
+
+                            <button type="button" (click)="incribirse(cursadas)"
+                                    class="btn btn-primary" 
+                                    >
+                                <fa-icon icon="save"></fa-icon>
+                                <span class="d-none d-md-inline">Inscribirme</span>
+                            </button>
+
                         </div>
                     </td>
                 </tr>

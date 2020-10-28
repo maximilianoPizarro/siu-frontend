@@ -5,6 +5,8 @@ This application was generated using JHipster 6.10.1, you can find documentation
 ## Docker
 
          docker-compose up -d
+         docker tag siu-frontend mpizarro/siu-frontend:v0.0.1
+         docker push mpizarro/siu-frontend:v0.0.1
 
 ## Development
 
