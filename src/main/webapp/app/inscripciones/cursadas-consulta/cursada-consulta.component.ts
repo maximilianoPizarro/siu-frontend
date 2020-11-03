@@ -7,7 +7,8 @@ import { JhiEventManager } from 'ng-jhipster';
 
 import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
 import { InscripcionesService } from 'app/core/inscripciones/inscripciones.service';
-import { IExamenConsulta } from 'app/core/inscripciones/examenconsulta.model';
+import { ICursadaConsulta } from 'app/core/inscripciones/cursadaconsulta.model';
+import { CursadaCancelarComponent } from './cursada-cancelar.component';
 import { AccountService } from 'app/core/auth/account.service';
 import { Account } from 'app/core/user/account.model';
 
@@ -17,7 +18,7 @@ import { Account } from 'app/core/user/account.model';
 })
 export class CursadaConsultaManagementComponent implements OnInit, OnDestroy {
   currentAccount: Account | null = null;
-  lstexamenes: IExamenConsulta[] | null = null;
+  lstexamenes: ICursadaConsulta[] | null = null;
   authSubscription?: Subscription;
   examenesListSubscription?: Subscription;
   totalItems = 0;
@@ -77,7 +78,7 @@ export class CursadaConsultaManagementComponent implements OnInit, OnDestroy {
         },
         this.currentAccount?.id
       )
-      .subscribe((res: HttpResponse<IExamenConsulta[]>) => this.onSuccess(res.body, res.headers));
+      .subscribe((res: HttpResponse<ICursadaConsulta[]>) => this.onSuccess(res.body, res.headers));
   }
 
   private sort(): string[] {
@@ -88,8 +89,13 @@ export class CursadaConsultaManagementComponent implements OnInit, OnDestroy {
     return result;
   }
 
-  private onSuccess(lstexamenes: IExamenConsulta[] | null, headers: HttpHeaders): void {
+  private onSuccess(lstexamenes: ICursadaConsulta[] | null, headers: HttpHeaders): void {
     this.totalItems = Number(headers.get('X-Total-Count'));
     this.lstexamenes = lstexamenes;
+  }
+
+  cancelarCursada(examen: ICursadaConsulta): void {
+    const modalRef = this.modalService.open(CursadaCancelarComponent, { size: 'lg', backdrop: 'static' });
+    modalRef.componentInstance.examen = examen;
   }
 }
