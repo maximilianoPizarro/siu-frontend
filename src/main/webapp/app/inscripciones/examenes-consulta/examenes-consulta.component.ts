@@ -10,6 +10,7 @@ import { InscripcionesService } from 'app/core/inscripciones/inscripciones.servi
 import { IExamenConsulta } from 'app/core/inscripciones/examenconsulta.model';
 import { AccountService } from 'app/core/auth/account.service';
 import { Account } from 'app/core/user/account.model';
+import { ExamenesCancelarComponent } from './examenes-cancelar.component';
 
 @Component({
   selector: 'jhi-examenes-consulta-mgmt',
@@ -91,5 +92,10 @@ export class ExamenesConsultaManagementComponent implements OnInit, OnDestroy {
   private onSuccess(lstexamenes: IExamenConsulta[] | null, headers: HttpHeaders): void {
     this.totalItems = Number(headers.get('X-Total-Count'));
     this.lstexamenes = lstexamenes;
+  }
+
+  cancelarExamen(examen: IExamenConsulta): void {
+    const modalRef = this.modalService.open(ExamenesCancelarComponent, { size: 'lg', backdrop: 'static' });
+    modalRef.componentInstance.examen = examen;
   }
 }

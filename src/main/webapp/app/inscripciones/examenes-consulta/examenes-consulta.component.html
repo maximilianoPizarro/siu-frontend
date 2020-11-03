@@ -1,6 +1,6 @@
 <div>
     <h2>
-        <span id="examenes-consulta-management-page-heading">Consulta de Examenes </span>
+        <span id="examenes-consulta-management-page-heading">Mis Examenes </span>
 
     </h2>
 
@@ -26,7 +26,13 @@
                     <td>{{ examenes.inicioInscripcion }}</td>
                     <td>{{ examenes.finInscripcion }}</td>
                     <td class="text-right">
-                        <div class="btn-group">                       
+                        <div class="btn-group">      
+                            <button type="button" (click)="cancelarExamen(examenes)"
+                                    class="btn btn-danger btn-sm" 
+                                    >
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline">Cancelar</span>
+                            </button>                                             
                         </div>
                     </td>
                 </tr>

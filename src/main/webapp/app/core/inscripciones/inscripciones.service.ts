@@ -41,8 +41,8 @@ export class InscripcionesService {
     return this.http.post<IExamenIncripcion>(`${this.resourceUrl}inscribirEstudianteExamen`, cursada);
   }
 
-  bajaInscripcionExamen(): Observable<{}> {
-    return this.http.delete(`${this.resourceUrl}bajaInscripcionExamen`);
+  bajaInscripcionExamen(idInscriptosExamen: any): Observable<{}> {
+    return this.http.delete(`${this.resourceUrl}bajaInscripcionExamen/${idInscriptosExamen}`);
   }
 
   traerExamenesParaInscripcion(req?: Pagination): Observable<HttpResponse<IMaterias[]>> {
