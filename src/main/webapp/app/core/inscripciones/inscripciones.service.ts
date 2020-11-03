@@ -8,6 +8,7 @@ import { ICursadaIncripcion } from './cursadainscripcion.model';
 import { IMaterias } from './materias.model';
 import { createRequestOption, Pagination } from 'app/shared/util/request-util';
 import { IExamenIncripcion } from './exameninscripcion.model';
+import { IExamenConsulta } from './examenconsulta.model';
 
 @Injectable({ providedIn: 'root' })
 export class InscripcionesService {
@@ -22,6 +23,14 @@ export class InscripcionesService {
   traerMateriasParaInscripcion(req?: Pagination): Observable<HttpResponse<IMaterias[]>> {
     const options = createRequestOption(req);
     return this.http.get<IMaterias[]>(`${this.resourceUrl}traerMateriasParaInscripcion`, { params: options, observe: 'response' });
+  }
+
+  traerInscripcionesEstudianteCursada(req?: Pagination, idEstudiante?: any): Observable<HttpResponse<IExamenConsulta[]>> {
+    const options = createRequestOption(req);
+    return this.http.get<IExamenConsulta[]>(`${this.resourceUrl}traerInscripcionesEstudianteCursada/${idEstudiante}`, {
+      params: options,
+      observe: 'response',
+    });
   }
 
   bajaInscripcionMateria(): Observable<{}> {
@@ -39,6 +48,14 @@ export class InscripcionesService {
   traerExamenesParaInscripcion(req?: Pagination): Observable<HttpResponse<IMaterias[]>> {
     const options = createRequestOption(req);
     return this.http.get<IMaterias[]>(`${this.resourceUrl}traerExamenesParaInscripcion`, { params: options, observe: 'response' });
+  }
+
+  traerInscripcionesEstudianteExamen(req?: Pagination, idEstudiante?: any): Observable<HttpResponse<IExamenConsulta[]>> {
+    const options = createRequestOption(req);
+    return this.http.get<IExamenConsulta[]>(`${this.resourceUrl}traerInscripcionesEstudianteExamen/${idEstudiante}`, {
+      params: options,
+      observe: 'response',
+    });
   }
 
   enviarNotificacionExamen(): Observable<IExamenes[]> {

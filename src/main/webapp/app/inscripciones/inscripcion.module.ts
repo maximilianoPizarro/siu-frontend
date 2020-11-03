@@ -15,6 +15,22 @@ import { Authority } from 'app/shared/constants/authority.constants';
         },
       },
       {
+        path: 'examenes-consulta',
+        loadChildren: () => import('./examenes-consulta/examenes-consulta.module').then(m => m.ExamenesConsultaManagementModule),
+        data: {
+          pageTitle: 'consulta examenes',
+          authorities: [Authority.ADMIN, Authority.ESTUDIANTE],
+        },
+      },
+      {
+        path: 'cursada-consulta',
+        loadChildren: () => import('./cursadas-consulta/cursada-consulta.module').then(m => m.CursadaConsultaManagementModule),
+        data: {
+          pageTitle: 'cursada examenes',
+          authorities: [Authority.ADMIN, Authority.ESTUDIANTE],
+        },
+      },
+      {
         path: 'examenes',
         loadChildren: () => import('./examenes/examenes.module').then(m => m.ExamenesManagementModule),
         data: {
