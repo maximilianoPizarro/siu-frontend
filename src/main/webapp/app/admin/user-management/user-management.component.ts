@@ -11,6 +11,7 @@ import { Account } from 'app/core/user/account.model';
 import { UserService } from 'app/core/user/user.service';
 import { User } from 'app/core/user/user.model';
 import { UserManagementDeleteDialogComponent } from './user-management-delete-dialog.component';
+import { UserManagementResetPasswordDialogComponent } from './user-management-resetpassword-dialog.component';
 
 @Component({
   selector: 'jhi-user-mgmt',
@@ -57,6 +58,11 @@ export class UserManagementComponent implements OnInit, OnDestroy {
 
   deleteUser(user: User): void {
     const modalRef = this.modalService.open(UserManagementDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
+    modalRef.componentInstance.user = user;
+  }
+
+  resetPasswordUser(user: User): void {
+    const modalRef = this.modalService.open(UserManagementResetPasswordDialogComponent, { size: 'lg', backdrop: 'static' });
     modalRef.componentInstance.user = user;
   }
 

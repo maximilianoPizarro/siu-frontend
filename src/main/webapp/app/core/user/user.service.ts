@@ -33,6 +33,10 @@ export class UserService {
     return this.http.delete(`${this.resourceUrl}/${login}`);
   }
 
+  resetPassword(login: string): Observable<{}> {
+    return this.http.get(`${this.resourceUrl}/reset/${login}`);
+  }
+
   authorities(): Observable<string[]> {
     return this.http.get<string[]>(SERVER_API_URL + 'api/users/authorities');
   }
