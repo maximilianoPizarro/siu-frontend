@@ -16,6 +16,23 @@
                     </span>
                 </a>
             </li>
+            <li *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_PROFESOR']"  ngbDropdown class="nav-item dropdown pointer" display="dynamic" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="inscripciones-menu">
+                    <span>
+                        <fa-icon icon="th-list"></fa-icon>
+                        <span>
+                            Calificaciones
+                        </span>
+                    </span>
+                </a>
+                <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="calificaciones-menu">
+                    <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
+                    <a class="dropdown-item" routerLink="calificaciones/materias" routerLinkActive="active" (click)="collapseNavbar()">
+                        <fa-icon icon="book" [fixedWidth]="true"></fa-icon>
+                        <span>Materias</span>
+                    </a>              
+                </ul>                
+            </li>               
             <li *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_ESTUDIANTE']"  ngbDropdown class="nav-item dropdown pointer" display="dynamic" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
                 <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="inscripciones-menu">
                     <span>
@@ -36,17 +53,6 @@
                         <fa-icon icon="book" [fixedWidth]="true"></fa-icon>
                         <span>Materias</span>
                     </a>
-                    <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
-                    <a class="dropdown-item" routerLink="inscripciones/examenes-consulta" routerLinkActive="active" (click)="collapseNavbar()">
-                        <fa-icon icon="bell" [fixedWidth]="true"></fa-icon>
-                        <span>Mis Examenes</span>
-                    </a>
-                    <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
-                    <a class="dropdown-item" routerLink="inscripciones/cursada-consulta" routerLinkActive="active" (click)="collapseNavbar()">
-                        <fa-icon icon="bell" [fixedWidth]="true"></fa-icon>
-                        <span>Mis Materias</span>
-                    </a>                    
-
                 </ul>                
             </li>        
             <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
@@ -170,6 +176,20 @@
                     </span>
                 </a>
                 <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="account-menu">
+                    <li *jhiHasAnyAuthority="'ROLE_ESTUDIANTE'">
+                    <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
+                    <a class="dropdown-item" routerLink="inscripciones/examenes-consulta" routerLinkActive="active" (click)="collapseNavbar()">
+                        <fa-icon icon="bell" [fixedWidth]="true"></fa-icon>
+                        <span>Mis Examenes</span>
+                    </a>
+                    </li>
+                    <li *jhiHasAnyAuthority="'ROLE_ESTUDIANTE'">
+                    <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
+                    <a class="dropdown-item" routerLink="inscripciones/cursada-consulta" routerLinkActive="active" (click)="collapseNavbar()">
+                        <fa-icon icon="bell" [fixedWidth]="true"></fa-icon>
+                        <span>Mis Materias</span>
+                    </a>                    
+                    </li>
                     <li *ngSwitchCase="true">
                         <a class="dropdown-item" routerLink="account/settings" routerLinkActive="active" (click)="collapseNavbar()">
                             <fa-icon icon="wrench" [fixedWidth]="true"></fa-icon>

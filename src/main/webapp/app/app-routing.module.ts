@@ -22,6 +22,13 @@ const LAYOUT_ROUTES = [navbarRoute, ...errorRoute];
           loadChildren: () => import('./admin/admin-routing.module').then(m => m.AdminRoutingModule),
         },
         {
+          path: 'calificaciones',
+          data: {
+            authorities: [Authority.ADMIN, Authority.PROFESOR],
+          },
+          loadChildren: () => import('./calificaciones/calificaciones.module').then(m => m.UnLaSiuCalificacionesModule),
+        },
+        {
           path: 'inscripciones',
           data: {
             authorities: [Authority.ADMIN, Authority.ESTUDIANTE],
