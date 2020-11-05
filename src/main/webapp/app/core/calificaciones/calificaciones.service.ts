@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { SERVER_API_ESTUDIANTES } from 'app/app.constants';
 import { createRequestOption, Pagination } from 'app/shared/util/request-util';
 import { IMateria } from './materia.model';
+import { IMateriaAlumno } from './materiaalumno';
 import { Calificacion, ICalificarExamen, ICalificarCursada } from './calificacion.model';
 
 @Injectable({ providedIn: 'root' })
@@ -21,8 +22,12 @@ export class CalificacionesService {
     });
   }
 
-  listadoAlumnosPorMateria(cursada: Calificacion): Observable<IMateria> {
-    return this.http.post<IMateria>(`${this.resourceUrl}listadoAlumnosPorMateria`, cursada);
+  listadoAlumnosPorMateria(req?: Pagination, cursada?: Calificacion): Observable<HttpResponse<IMateriaAlumno[]>> {
+    const options = createRequestOption(req);
+    return this.http.post<IMateriaAlumno[]>(`${this.resourceUrl}listadoAlumnosPorMateria`, cursada, {
+      params: options,
+      observe: 'response',
+    });
   }
 
   cargaNotasFinales(cursada: ICalificarExamen): Observable<ICalificarExamen> {

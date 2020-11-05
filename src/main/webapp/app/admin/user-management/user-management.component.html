@@ -62,7 +62,7 @@
                             </button>
                             
                             <button type="button" (click)="resetPasswordUser(user)"
-                                    class="btn btn-danger btn-sm" [disabled]="!currentAccount || currentAccount.login === user.login">
+                                    class="btn btn-warning btn-sm" [disabled]="!currentAccount || currentAccount.login === user.login">
                                 <fa-icon icon="times"></fa-icon>
                                 <span class="d-none d-md-inline">Reset</span>
                             </button>

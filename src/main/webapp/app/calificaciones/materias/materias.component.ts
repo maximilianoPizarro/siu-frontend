@@ -36,7 +36,7 @@ export class MateriasManagementComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.accountService.identity().subscribe(account => (this.currentAccount = account));
+    this.accountService.identity().subscribe(currentAccount => (this.currentAccount = currentAccount));
     this.examenesListSubscription = this.eventManager.subscribe('examenesListSubscription', () => this.loadAll());
     this.handleNavigation();
   }
@@ -69,11 +69,14 @@ export class MateriasManagementComponent implements OnInit, OnDestroy {
 
   private loadAll(): void {
     this.calificacionesService
-      .traerMaterias({
-        page: this.page - 1,
-        size: this.itemsPerPage,
-        sort: this.sort(),
-      })
+      .traerMaterias(
+        {
+          page: this.page - 1,
+          size: this.itemsPerPage,
+          sort: this.sort(),
+        },
+        this.currentAccount?.id
+      )
       .subscribe((res: HttpResponse<Materia[]>) => this.onSuccess(res.body, res.headers));
   }
 

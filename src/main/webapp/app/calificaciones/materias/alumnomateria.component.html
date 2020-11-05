@@ -1,0 +1,37 @@
+<div>
+    <h2>
+        <span id="alumnomateria-management-page-heading">Alumnos por Materias</span>
+
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="table-responsive" *ngIf="lstexamenes">
+        <table class="table table-striped" aria-describedby="examenes-management-page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" >
+                    <th scope="col"  jhiSortBy="nombre"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="inicioInscripcion"><span>Alumno</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="finInscripcion"><span>Nota Cursada</span> <fa-icon icon="sort"></fa-icon></th>                                        
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody *ngIf="lstexamenes">
+                <tr *ngFor="let examenes of lstexamenes">                    
+                    <td>{{ examenes.datosAlumno }}</td>
+                    <td>{{ examenes.idalumnosCursada }}</td>
+                    <td>{{ examenes.notaCursada }}</td>
+                    <td class="text-right">
+                        <div class="btn-group">
+
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+  
+</div>
