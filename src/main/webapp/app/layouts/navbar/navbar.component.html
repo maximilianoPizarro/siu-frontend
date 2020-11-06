@@ -31,6 +31,10 @@
                         <fa-icon icon="book" [fixedWidth]="true"></fa-icon>
                         <span>Materias</span>
                     </a>              
+                    <a class="dropdown-item" routerLink="calificaciones/examenes" routerLinkActive="active" (click)="collapseNavbar()">
+                        <fa-icon icon="book" [fixedWidth]="true"></fa-icon>
+                        <span>Examenes</span>
+                    </a>              
                 </ul>                
             </li>               
             <li *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_ESTUDIANTE']"  ngbDropdown class="nav-item dropdown pointer" display="dynamic" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">

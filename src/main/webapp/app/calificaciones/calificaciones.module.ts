@@ -14,6 +14,14 @@ import { Authority } from 'app/shared/constants/authority.constants';
           authorities: [Authority.ADMIN, Authority.PROFESOR],
         },
       },
+      {
+        path: 'examenes',
+        loadChildren: () => import('./examenes/examenes.module').then(m => m.ExamenesManagementModule),
+        data: {
+          pageTitle: 'examenes',
+          authorities: [Authority.ADMIN, Authority.PROFESOR],
+        },
+      },
     ]),
   ],
 })

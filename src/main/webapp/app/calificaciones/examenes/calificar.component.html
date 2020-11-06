@@ -1,0 +1,35 @@
+<form *ngIf="examen" name="incripcionForm" (ngSubmit)="calificarCursada(examen,currentAccount)">
+    <div class="modal-header">
+        <h4 class="modal-title">Calificar</h4>
+
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" (click)="cancel()">&times;</button>
+    </div>
+
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+
+        <form name="calificarForm" role="form" novalidate (ngSubmit)="save(examen)" [formGroup]="calificarForm">                       
+            <div class="form-group">
+                <label>Alumno: {{ examen.datosAlumno?.nombre }} {{ examen.datosAlumno?.apellido }} {{ examen.datosAlumno?.dni }}</label>
+        </div>
+            <div class="form-group">
+                <label>Nota Cursada</label>
+                <input type="text" class="form-control" name="notaCursada" formControlName="notaCursada"/>
+            </div>
+            <div class="btn-group">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="cancel()">
+                <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancelar</span>
+            </button>
+    
+            <button type="submit" class="btn btn-primary">
+                <fa-icon icon="save"></fa-icon>&nbsp;<span>Confirmar</span>
+            </button>
+            </div>
+
+        </form>
+    </div>
+
+    <div class="modal-footer">
+
+    </div>
+</form>
