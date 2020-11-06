@@ -19,9 +19,9 @@
                 </tr>
             </thead>
             <tbody *ngIf="lstexamenes">
-                <tr *ngFor="let examenes of lstexamenes">                    
-                    <td>{{ examenes.datosAlumno }}</td>
-                    <td>{{ examenes.idalumnosCursada }}</td>
+                <tr *ngFor="let examenes of lstexamenes">
+                    <td>{{ examenes.idalumnosCursada }}</td>                    
+                    <td>{{ examenes.datosAlumno?.nombre }} {{ examenes.datosAlumno?.apellido }} {{ examenes.datosAlumno?.dni }}</td>                    
                     <td>{{ examenes.notaCursada }}</td>
                     <td class="text-right">
                         <div class="btn-group">
