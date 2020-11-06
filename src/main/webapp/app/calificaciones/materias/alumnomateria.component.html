@@ -1,10 +1,12 @@
 <div>
     <h2>
         <span id="alumnomateria-management-page-heading">Alumnos por Materias</span>
-
-        <button class="btn btn-primary float-right jh-create-entity" (click)="exportExcel()">
-            <fa-icon icon="book"></fa-icon> <span>Descargar</span>
-        </button>
+        
+            <button class="btn btn-primary float-right jh-create-entity" (click)="exportExcel()">
+                <fa-icon icon="book"></fa-icon> <span>Descargar</span>
+            </button>
+        
+      
     </h2>
 
     <jhi-alert-error></jhi-alert-error>
@@ -28,7 +30,12 @@
                     <td>{{ examenes.notaCursada }}</td>
                     <td class="text-right">
                         <div class="btn-group">
-
+                            <button type="button" (click)="calificarCursada(examenes,currentAccount)"
+                                    class="btn btn-primary" 
+                                    >
+                                <fa-icon icon="save"></fa-icon>
+                                <span class="d-none d-md-inline">Calificar</span>
+                            </button> 
                         </div>
                     </td>
                 </tr>

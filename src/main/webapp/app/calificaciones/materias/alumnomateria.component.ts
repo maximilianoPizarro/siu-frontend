@@ -14,6 +14,7 @@ import { CalificacionesService } from 'app/core/calificaciones/calificaciones.se
 import { ITraerMateria, Calificacion } from 'app/core/calificaciones/calificacion.model';
 import { Materia } from 'app/core/calificaciones/materia.model';
 import { ExportAsService, ExportAsConfig } from 'ngx-export-as';
+import { CalificarComponent } from './calificar.component';
 
 @Component({
   selector: 'jhi-alumnomateria-mgmt',
@@ -89,5 +90,11 @@ export class AlumnoMateriasManagementComponent implements OnInit, OnDestroy {
       elementIdOrContent: 'excel',
     };
     this.exportAsService.save(exportAsConfig, 'Listado_Alumnos').subscribe(() => {});
+  }
+
+  calificarCursada(examen: IMateriaAlumno, currentAccount: Account | null): void {
+    const modalRef = this.modalService.open(CalificarComponent, { size: 'lg', backdrop: 'static' });
+    modalRef.componentInstance.examen = examen;
+    modalRef.componentInstance.currentAccount = currentAccount;
   }
 }
