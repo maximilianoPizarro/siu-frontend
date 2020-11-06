@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { CalificarCursada } from 'app/core/calificaciones/calificacioncursada.model';
+import { CalificarExamen } from 'app/core/calificaciones/calificacionexamen.model';
 import { CalificacionesService } from 'app/core/calificaciones/calificaciones.service';
 import { IMateriaAlumno } from 'app/core/calificaciones/materiaalumno';
 import { Subscription } from 'rxjs';
@@ -45,8 +45,8 @@ export class CalificarComponent {
   save(examen: IMateriaAlumno): void {
     this.updateCalificar(examen);
     this.calicarService
-      .cargaNotasCursada(
-        new CalificarCursada(
+      .cargaNotasFinales(
+        new CalificarExamen(
           this.currentAccount?.id,
           examen.materiasIdMaterias,
           examen.idalumnosCursada,

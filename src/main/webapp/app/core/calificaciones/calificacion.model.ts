@@ -22,6 +22,6 @@ export interface ICalificarCursada {
   recordatorio?: any;
 }
 
-export class Calificacion implements ITraerMateria, ICalificarCursada, ICalificarExamen {
+export class Calificacion implements ITraerMateria, ICalificarExamen {
   constructor(public idDocente?: any, public idMateria?: any) {}
 }
