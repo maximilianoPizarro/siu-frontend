@@ -29,6 +29,7 @@
     "moment": "2.27.0",
     "ng-jhipster": "0.14.0",
     "ngx-cookie-service": "3.0.4",
+    "ngx-export-as": "^1.5.0",
     "ngx-infinite-scroll": "9.0.0",
     "ngx-webstorage": "5.0.0",
     "path": "^0.12.7",

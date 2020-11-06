@@ -4,9 +4,10 @@ import { UnLaSiuSharedModule } from 'app/shared/shared.module';
 import { MateriasManagementComponent } from './materias.component';
 import { AlumnoMateriasManagementComponent } from './alumnomateria.component';
 import { materiasManagementRoute } from './materias.route';
+import { ExportAsModule } from 'ngx-export-as';
 
 @NgModule({
-  imports: [UnLaSiuSharedModule, RouterModule.forChild(materiasManagementRoute)],
+  imports: [UnLaSiuSharedModule, ExportAsModule, RouterModule.forChild(materiasManagementRoute)],
   declarations: [MateriasManagementComponent, AlumnoMateriasManagementComponent],
   entryComponents: [],
 })

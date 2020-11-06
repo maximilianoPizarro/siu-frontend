@@ -13,6 +13,7 @@ import { Account } from 'app/core/user/account.model';
 import { CalificacionesService } from 'app/core/calificaciones/calificaciones.service';
 import { ITraerMateria, Calificacion } from 'app/core/calificaciones/calificacion.model';
 import { Materia } from 'app/core/calificaciones/materia.model';
+import { ExportAsService, ExportAsConfig } from 'ngx-export-as';
 
 @Component({
   selector: 'jhi-alumnomateria-mgmt',
@@ -38,7 +39,8 @@ export class AlumnoMateriasManagementComponent implements OnInit, OnDestroy {
     private router: Router,
     private eventManager: JhiEventManager,
     private activatedRoute: ActivatedRoute,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private exportAsService: ExportAsService
   ) {}
 
   ngOnInit(): void {
@@ -79,5 +81,13 @@ export class AlumnoMateriasManagementComponent implements OnInit, OnDestroy {
   private onSuccess(lstexamenes: IMateriaAlumno[] | null, headers: HttpHeaders): void {
     this.totalItems = Number(headers.get('X-Total-Count'));
     this.lstexamenes = lstexamenes;
+  }
+
+  exportExcel(): void {
+    const exportAsConfig: ExportAsConfig = {
+      type: 'xlsx',
+      elementIdOrContent: 'excel',
+    };
+    this.exportAsService.save(exportAsConfig, 'Listado_Alumnos').subscribe(() => {});
   }
 }
