@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { HttpResponse, HttpHeaders } from '@angular/common/http';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
@@ -9,20 +9,22 @@ import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
 
 import { IMateriaAlumno } from 'app/core/calificaciones/materiaalumno';
 import { AccountService } from 'app/core/auth/account.service';
+import { Account } from 'app/core/user/account.model';
 import { CalificacionesService } from 'app/core/calificaciones/calificaciones.service';
 import { ITraerMateria, Calificacion } from 'app/core/calificaciones/calificacion.model';
+import { Materia } from 'app/core/calificaciones/materia.model';
 
 @Component({
   selector: 'jhi-alumnomateria-mgmt',
   templateUrl: './alumnomateria.component.html',
 })
-export class AlumnoMateriasManagementComponent implements OnInit {
+export class AlumnoMateriasManagementComponent implements OnInit, OnDestroy {
   lstexamenes: IMateriaAlumno[] | null = null;
   calificacion?: ITraerMateria;
   currentAccount: Account | null = null;
   authSubscription?: Subscription;
   examenesListSubscription?: Subscription;
-  idMateria: any;
+  materia: Materia | null = null;
   totalItems = 0;
   itemsPerPage = ITEMS_PER_PAGE;
   page!: number;
@@ -40,12 +42,19 @@ export class AlumnoMateriasManagementComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.route.data.subscribe(({ idMateria }) => (this.idMateria = idMateria));
+    this.accountService.identity().subscribe(currentAccount => (this.currentAccount = currentAccount));
+    this.route.data.subscribe(({ materia }) => (this.materia = materia));
     this.loadAll();
   }
 
+  ngOnDestroy(): void {
+    if (this.examenesListSubscription) {
+      this.eventManager.destroy(this.examenesListSubscription);
+    }
+  }
+
   private loadAll(): void {
-    this.calificacion = new Calificacion(31, 10);
+    this.calificacion = new Calificacion(this.currentAccount?.id, this.materia?.idMateria);
 
     this.examenesListSubscription = this.calificacionesService
       .listadoAlumnosPorMateria(
