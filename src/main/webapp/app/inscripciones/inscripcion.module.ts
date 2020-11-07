@@ -38,6 +38,14 @@ import { Authority } from 'app/shared/constants/authority.constants';
           authorities: [Authority.ADMIN, Authority.ESTUDIANTE],
         },
       },
+      {
+        path: 'analitico',
+        loadChildren: () => import('./analitico/analitico.module').then(m => m.AnaliticoManagementModule),
+        data: {
+          pageTitle: 'analitico',
+          authorities: [Authority.ADMIN, Authority.ESTUDIANTE],
+        },
+      },
     ]),
   ],
 })
