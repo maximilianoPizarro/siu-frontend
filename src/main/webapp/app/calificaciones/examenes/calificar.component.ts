@@ -49,7 +49,7 @@ export class CalificarComponent {
         new CalificarExamen(
           this.currentAccount?.id,
           examen.materiasIdMaterias,
-          examen.recordatorio,
+          1,
           examen.nota,
           examen.examenesidExamenes,
           examen.idInscriptosExamen,
