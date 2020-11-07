@@ -25,7 +25,7 @@
             </thead>
             <tbody *ngIf="lstexamenes">
                 <tr *ngFor="let examenes of lstexamenes">
-                    <td>{{ examenes.examenesidExamenes }}</td>                    
+                    <td>{{ examenes.idInscriptosExamen }}</td>                    
                     <td>{{ examenes.datosAlumno?.nombre }} {{ examenes.datosAlumno?.apellido }} {{ examenes.datosAlumno?.dni }}</td>                    
                     <td>{{ examenes.nota }}</td>
                     <td class="text-right">
