@@ -7,6 +7,7 @@ import { createRequestOption, Pagination } from 'app/shared/util/request-util';
 import { IMateria } from './materia.model';
 import { IMateriaAlumno } from './materiaalumno';
 import { Calificacion, ICalificarExamen, ICalificarCursada } from './calificacion.model';
+import { IMateriaAlumnoExamen } from './materiaalumnoexamen';
 
 @Injectable({ providedIn: 'root' })
 export class CalificacionesService {
@@ -25,6 +26,14 @@ export class CalificacionesService {
   listadoAlumnosPorMateria(req?: Pagination, cursada?: Calificacion): Observable<HttpResponse<IMateriaAlumno[]>> {
     const options = createRequestOption(req);
     return this.http.post<IMateriaAlumno[]>(`${this.resourceUrl}listadoAlumnosPorMateria`, cursada, {
+      params: options,
+      observe: 'response',
+    });
+  }
+
+  traerAlumnosPorMateriaExamen(req?: Pagination, cursada?: Calificacion): Observable<HttpResponse<IMateriaAlumnoExamen[]>> {
+    const options = createRequestOption(req);
+    return this.http.post<IMateriaAlumnoExamen[]>(`${this.resourceUrl}traerAlumnosPorMateriaExamen`, cursada, {
       params: options,
       observe: 'response',
     });

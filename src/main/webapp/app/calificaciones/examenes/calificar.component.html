@@ -10,8 +10,8 @@
 
         <form name="calificarForm" role="form" novalidate (ngSubmit)="save(examen)" [formGroup]="calificarForm">                       
             <div class="form-group">
-                <label>Nota Final: {{ examen.notaCursada }}</label>
-                <input type="number" min="0" max="10"  class="form-control"  ng-model="examen.notaCursada"  name="notaCursada" formControlName="notaCursada" required/>                
+                <label>Nota Final: {{ examen.nota }}</label>
+                <input type="number" min="0" max="10"  class="form-control"  ng-model="examen.nota"  name="nota" formControlName="nota" required/>                
             </div>
             <div class="btn-group">
             <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="cancel()">

@@ -7,7 +7,7 @@ import { JhiEventManager } from 'ng-jhipster';
 
 import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
 
-import { IMateriaAlumno } from 'app/core/calificaciones/materiaalumno';
+import { IMateriaAlumnoExamen } from 'app/core/calificaciones/materiaalumnoexamen';
 import { AccountService } from 'app/core/auth/account.service';
 import { Account } from 'app/core/user/account.model';
 import { CalificacionesService } from 'app/core/calificaciones/calificaciones.service';
@@ -21,7 +21,7 @@ import { CalificarComponent } from './calificar.component';
   templateUrl: './alumnomateria.component.html',
 })
 export class AlumnoMateriasManagementComponent implements OnInit, OnDestroy {
-  lstexamenes: IMateriaAlumno[] | null = null;
+  lstexamenes: IMateriaAlumnoExamen[] | null = null;
   calificacion?: ITraerMateria;
   currentAccount: Account | null = null;
   authSubscription?: Subscription;
@@ -60,7 +60,7 @@ export class AlumnoMateriasManagementComponent implements OnInit, OnDestroy {
     this.calificacion = new Calificacion(this.currentAccount?.id, this.materia?.idMateria);
 
     this.examenesListSubscription = this.calificacionesService
-      .listadoAlumnosPorMateria(
+      .traerAlumnosPorMateriaExamen(
         {
           page: this.page - 1,
           size: this.itemsPerPage,
@@ -68,7 +68,7 @@ export class AlumnoMateriasManagementComponent implements OnInit, OnDestroy {
         },
         this.calificacion
       )
-      .subscribe((res: HttpResponse<IMateriaAlumno[]>) => this.onSuccess(res.body, res.headers));
+      .subscribe((res: HttpResponse<IMateriaAlumnoExamen[]>) => this.onSuccess(res.body, res.headers));
   }
 
   private sort(): string[] {
@@ -79,7 +79,7 @@ export class AlumnoMateriasManagementComponent implements OnInit, OnDestroy {
     return result;
   }
 
-  private onSuccess(lstexamenes: IMateriaAlumno[] | null, headers: HttpHeaders): void {
+  private onSuccess(lstexamenes: IMateriaAlumnoExamen[] | null, headers: HttpHeaders): void {
     this.totalItems = Number(headers.get('X-Total-Count'));
     this.lstexamenes = lstexamenes;
   }
@@ -92,7 +92,7 @@ export class AlumnoMateriasManagementComponent implements OnInit, OnDestroy {
     this.exportAsService.save(exportAsConfig, 'Listado_Alumnos').subscribe(() => {});
   }
 
-  calificarCursada(examen: IMateriaAlumno, currentAccount: Account | null): void {
+  calificarCursada(examen: IMateriaAlumnoExamen, currentAccount: Account | null): void {
     const modalRef = this.modalService.open(CalificarComponent, { size: 'lg', backdrop: 'static' });
     modalRef.componentInstance.examen = examen;
     modalRef.componentInstance.currentAccount = currentAccount;

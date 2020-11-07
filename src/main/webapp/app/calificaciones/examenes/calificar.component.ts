@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { CalificarExamen } from 'app/core/calificaciones/calificacionexamen.model';
 import { CalificacionesService } from 'app/core/calificaciones/calificaciones.service';
-import { IMateriaAlumno } from 'app/core/calificaciones/materiaalumno';
+import { IMateriaAlumnoExamen } from 'app/core/calificaciones/materiaalumnoexamen';
 import { Subscription } from 'rxjs';
 import { Account } from 'app/core/user/account.model';
 
@@ -13,12 +13,12 @@ import { Account } from 'app/core/user/account.model';
   templateUrl: './calificar.component.html',
 })
 export class CalificarComponent {
-  examen!: IMateriaAlumno;
+  examen!: IMateriaAlumnoExamen;
   currentAccount!: Account;
   authSubscription?: Subscription;
 
   calificarForm = this.fb.group({
-    notaCursada: [],
+    nota: [],
   });
 
   constructor(
@@ -28,30 +28,31 @@ export class CalificarComponent {
     private route: ActivatedRoute
   ) {}
 
-  private updateForm(examen: IMateriaAlumno): void {
+  private updateForm(examen: IMateriaAlumnoExamen): void {
     this.calificarForm.patchValue({
-      notaCursada: examen.notaCursada,
+      nota: examen.nota,
     });
   }
 
-  private updateCalificar(examen: IMateriaAlumno): void {
-    examen.notaCursada = this.calificarForm.get(['notaCursada'])!.value;
+  private updateCalificar(examen: IMateriaAlumnoExamen): void {
+    examen.nota = this.calificarForm.get(['nota'])!.value;
   }
 
   cancel(): void {
     this.activeModal.dismiss();
   }
 
-  save(examen: IMateriaAlumno): void {
+  save(examen: IMateriaAlumnoExamen): void {
     this.updateCalificar(examen);
     this.calicarService
       .cargaNotasFinales(
         new CalificarExamen(
           this.currentAccount?.id,
           examen.materiasIdMaterias,
-          examen.idalumnosCursada,
-          examen.materiasIdMaterias,
-          examen.notaCursada,
+          examen.examenesidExamenes,
+          examen.idInscriptosExamen,
+          examen.recordatorio,
+          examen.nota,
           1
         )
       )
@@ -60,7 +61,7 @@ export class CalificarComponent {
       });
   }
 
-  calificarCursada(examen: IMateriaAlumno, currentAccount: Account): void {
+  calificarCursada(examen: IMateriaAlumnoExamen, currentAccount: Account): void {
     this.updateForm(examen);
     this.currentAccount = currentAccount;
   }
