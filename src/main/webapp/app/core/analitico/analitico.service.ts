@@ -11,9 +11,9 @@ export class AnaliticoService {
 
   constructor(private http: HttpClient) {}
 
-  crearAnaliticoPDF(req?: Pagination, idEstudiante?: any): Observable<HttpResponse<Blob>> {
+  traerAnalitico(req?: Pagination, idEstudiante?: any): Observable<HttpResponse<Blob>> {
     const options = createRequestOption(req);
-    return this.http.get<Blob>(`${this.resourceUrl}crearAnaliticoPDF/${idEstudiante}`, {
+    return this.http.get<Blob>(`${this.resourceUrl}traerAnalitico/${idEstudiante}`, {
       params: options,
       observe: 'response',
     });

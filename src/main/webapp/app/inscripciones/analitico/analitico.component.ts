@@ -8,6 +8,7 @@ import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
 import { AnaliticoService } from 'app/core/analitico/analitico.service';
 import { AccountService } from 'app/core/auth/account.service';
 import { Account } from 'app/core/user/account.model';
+import { ExportAsConfig, ExportAsService } from 'ngx-export-as';
 
 @Component({
   selector: 'jhi-analitico-mgmt',
@@ -28,6 +29,7 @@ export class AnaliticoManagementComponent implements OnInit, OnDestroy {
     private accountService: AccountService,
     private analiticoService: AnaliticoService,
     private router: Router,
+    private exportAsService: ExportAsService,
     private eventManager: JhiEventManager,
     private activatedRoute: ActivatedRoute
   ) {}
@@ -46,7 +48,7 @@ export class AnaliticoManagementComponent implements OnInit, OnDestroy {
 
   private loadAll(): void {
     this.analiticoSubscription = this.analiticoService
-      .crearAnaliticoPDF(
+      .traerAnalitico(
         {
           page: this.page - 1,
           size: this.itemsPerPage,
@@ -61,6 +63,15 @@ export class AnaliticoManagementComponent implements OnInit, OnDestroy {
     this.totalItems = Number(headers.get('X-Total-Count'));
     this.analitico = analitico;
   }
+
+  exportPdf(): void {
+    const exportAsConfig: ExportAsConfig = {
+      type: 'pdf',
+      elementIdOrContent: 'mitituloanalitico',
+    };
+    this.exportAsService.save(exportAsConfig, 'Titulo_Analitico_Pizarro_Maximiliano').subscribe(() => {});
+  }
+
   private handleNavigation(): void {
     combineLatest(this.activatedRoute.data, this.activatedRoute.queryParamMap, (data: Data, params: ParamMap) => {
       const page = params.get('page');
