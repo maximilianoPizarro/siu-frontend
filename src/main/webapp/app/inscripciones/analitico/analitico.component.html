@@ -1,6 +1,6 @@
 <div>
 
-<div  id="mitituloanalitico">
+<div>
 
     <h2>
         <span id="analitco-management-page-heading">Informe Analítco</span>
@@ -10,6 +10,26 @@
     <jhi-alert-error></jhi-alert-error>
 
     <jhi-alert></jhi-alert>
+
+    
+    <div  class="table-responsive" >
+        <table  id="mitituloanalitico" class="table table-striped" aria-describedby="examenes-management-page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" >
+                    <th scope="col"  jhiSortBy="nombre"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="inicioInscripcion"><span>Alumno</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="finInscripcion"><span>Nota Cursada</span> <fa-icon icon="sort"></fa-icon></th>                                                           
+                </tr>
+            </thead>
+            <tbody *ngIf="analitico">
+                <tr *ngFor="let examenes of analitico">
+                    <td>{{ examenes.idInscriptosExamen }}</td>                    
+                    <td>{{ examenes.datosAlumno?.nombre }} {{ examenes.datosAlumno?.apellido }} {{ examenes.datosAlumno?.dni }}</td>                    
+                    <td>{{ examenes.nota }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
     <button class="btn btn-primary float-right jh-create-entity" (click)="exportPdf()">
         <fa-icon icon="book"></fa-icon> <span>Descargar</span>

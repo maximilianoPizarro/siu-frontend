@@ -9,6 +9,7 @@ import { AnaliticoService } from 'app/core/analitico/analitico.service';
 import { AccountService } from 'app/core/auth/account.service';
 import { Account } from 'app/core/user/account.model';
 import { ExportAsConfig, ExportAsService } from 'ngx-export-as';
+import { IExamenes } from 'app/core/analitico/examenes.model';
 
 @Component({
   selector: 'jhi-analitico-mgmt',
@@ -17,7 +18,7 @@ import { ExportAsConfig, ExportAsService } from 'ngx-export-as';
 export class AnaliticoManagementComponent implements OnInit, OnDestroy {
   currentAccount: Account | null = null;
   authSubscription?: Subscription;
-  analitico: Blob | null = null;
+  analitico: IExamenes[] | null = null;
   analiticoSubscription?: Subscription;
   totalItems = 0;
   itemsPerPage = ITEMS_PER_PAGE;
@@ -56,10 +57,10 @@ export class AnaliticoManagementComponent implements OnInit, OnDestroy {
         },
         this.currentAccount?.id
       )
-      .subscribe((res: HttpResponse<Blob>) => this.onSuccess(res.body, res.headers));
+      .subscribe((res: HttpResponse<IExamenes[]>) => this.onSuccess(res.body, res.headers));
   }
 
-  private onSuccess(analitico: Blob | null, headers: HttpHeaders): void {
+  private onSuccess(analitico: IExamenes[] | null, headers: HttpHeaders): void {
     this.totalItems = Number(headers.get('X-Total-Count'));
     this.analitico = analitico;
   }
@@ -69,7 +70,9 @@ export class AnaliticoManagementComponent implements OnInit, OnDestroy {
       type: 'pdf',
       elementIdOrContent: 'mitituloanalitico',
     };
-    this.exportAsService.save(exportAsConfig, 'Titulo_Analitico_Pizarro_Maximiliano').subscribe(() => {});
+    this.exportAsService
+      .save(exportAsConfig, 'Titulo_Analitico_' + this.currentAccount?.firstName + '_' + this.currentAccount?.lastName)
+      .subscribe(() => {});
   }
 
   private handleNavigation(): void {
