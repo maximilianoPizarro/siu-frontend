@@ -5,10 +5,8 @@ export interface IExamenes {
   ExamenesidExamenes?: any;
   datosAlumno?: Estudiante;
   nota?: any;
-  asistencia?: boolean;
-  recordatorio?: boolean;
-  createdAt?: Date;
-  updatedAt?: Date;
+  materia?: string;
+  carrera?: string;
 }
 
 export class Examenes implements IExamenes {
@@ -17,9 +15,7 @@ export class Examenes implements IExamenes {
     public ExamenesidExamenes?: any,
     public datosAlumno?: Estudiante,
     public nota?: any,
-    public asistencia?: boolean,
-    public recordatorio?: boolean,
-    public createdAt?: Date,
-    public updatedAt?: Date
+    public materia?: string,
+    public carrera?: string
   ) {}
 }

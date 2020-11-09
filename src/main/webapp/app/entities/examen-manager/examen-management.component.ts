@@ -90,4 +90,8 @@ export class ExamenManagementComponent implements OnInit, OnDestroy {
     this.totalItems = Number(headers.get('X-Total-Count'));
     this.examenes = examenes;
   }
+
+  downloadPage(): void {
+    window.print();
+  }
 }
