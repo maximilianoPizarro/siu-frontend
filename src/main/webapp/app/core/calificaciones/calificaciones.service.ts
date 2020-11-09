@@ -46,4 +46,16 @@ export class CalificacionesService {
   cargaNotasCursada(cursada: ICalificarCursada): Observable<ICalificarCursada> {
     return this.http.post<ICalificarCursada>(`${this.resourceUrl}cargaNotasCursada`, cursada);
   }
+
+  cargaNotasCursadaDesdeArchivo(file: File, idDocente: any, idMateria: any, tipoACargar: string): Observable<{}> {
+    const formData: FormData = new FormData();
+    formData.append('file', file);
+    formData.append('idDocente', idDocente);
+    formData.append('idMateria', idMateria);
+    formData.append('tipoACargar', tipoACargar);
+    return this.http.post(`${this.resourceUrl}cargaNotasCursadaDesdeArchivo`, formData, {
+      reportProgress: true,
+      responseType: 'json',
+    });
+  }
 }

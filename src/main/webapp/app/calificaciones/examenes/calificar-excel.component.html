@@ -1,0 +1,34 @@
+<form name="incripcionForm" (ngSubmit)="calificarCursada(materia,currentAccount)">
+    <div class="modal-header">
+        <h4 class="modal-title">Calificar Alumnos</h4>
+
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" (click)="cancel()">&times;</button>
+    </div>
+
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+
+        <form name="calificarForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="calificarForm">                       
+            <div class="form-group">                
+                <label>Subir archivo xlsx</label>
+           </div>
+            <div class="form-group">
+                <input type="file"   class="form-control"  ng-model="file"  name="file" formControlName="file" accept=".xlsx" required/>                
+            </div>
+            <div class="btn-group">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="cancel()">
+                <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancelar</span>
+            </button>
+    
+            <button type="submit" class="btn btn-primary">
+                <fa-icon icon="save"></fa-icon>&nbsp;<span>Confirmar</span>
+            </button>
+            </div>
+
+        </form>
+    </div>
+
+    <div class="modal-footer">
+
+    </div>
+</form>

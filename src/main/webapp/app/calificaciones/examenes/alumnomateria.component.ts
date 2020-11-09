@@ -15,6 +15,7 @@ import { ITraerMateria, Calificacion } from 'app/core/calificaciones/calificacio
 import { Materia } from 'app/core/calificaciones/materia.model';
 import { ExportAsService, ExportAsConfig } from 'ngx-export-as';
 import { CalificarComponent } from './calificar.component';
+import { CalificarExcelComponent } from './calificar-excel.component';
 
 @Component({
   selector: 'jhi-alumnomateria-mgmt',
@@ -95,6 +96,12 @@ export class AlumnoMateriasManagementComponent implements OnInit, OnDestroy {
   calificarCursada(examen: IMateriaAlumnoExamen, currentAccount: Account | null): void {
     const modalRef = this.modalService.open(CalificarComponent, { size: 'lg', backdrop: 'static' });
     modalRef.componentInstance.examen = examen;
+    modalRef.componentInstance.currentAccount = currentAccount;
+  }
+
+  calificarExcel(currentAccount: Account | null): void {
+    const modalRef = this.modalService.open(CalificarExcelComponent, { size: 'lg', backdrop: 'static' });
+    modalRef.componentInstance.materia = this.materia;
     modalRef.componentInstance.currentAccount = currentAccount;
   }
 }
