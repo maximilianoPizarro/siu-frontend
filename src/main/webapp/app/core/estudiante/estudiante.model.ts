@@ -27,6 +27,7 @@ export class Estudiante implements IEstudiante, IEstudianteCreate {
     public domicilio?: string,
     public email?: string,
     public telefono?: string,
+    public idCarreras?: any,
     public user?: IUser
   ) {}
 }

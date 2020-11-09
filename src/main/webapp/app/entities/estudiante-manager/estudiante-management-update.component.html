@@ -109,7 +109,14 @@
                     <select  class="form-control" multiple name="user" formControlName="user">
                         <option *ngFor="let user of users" [value]="user">{{user.login}}</option>
                     </select>
-                </div>                 
+                </div>  
+                
+                <div class="form-group">
+                    <label>Carreras</label>
+                    <select  class="form-control" multiple name="idCarreras" formControlName="idCarreras">
+                        <option *ngFor="let carrera of carreras" [value]="carrera.idCarreras">{{carrera.nombre}}</option>
+                    </select>
+                </div>
 
             </div>
 
