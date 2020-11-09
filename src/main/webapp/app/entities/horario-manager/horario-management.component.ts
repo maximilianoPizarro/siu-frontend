@@ -90,4 +90,8 @@ export class HorarioManagementComponent implements OnInit, OnDestroy {
     this.totalItems = Number(headers.get('X-Total-Count'));
     this.horarios = horarios;
   }
+
+  downloadPage(): void {
+    window.print();
+  }
 }

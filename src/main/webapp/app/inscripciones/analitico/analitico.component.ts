@@ -75,6 +75,10 @@ export class AnaliticoManagementComponent implements OnInit, OnDestroy {
       .subscribe(() => {});
   }
 
+  downloadPage(): void {
+    window.print();
+  }
+
   private handleNavigation(): void {
     combineLatest(this.activatedRoute.data, this.activatedRoute.queryParamMap, (data: Data, params: ParamMap) => {
       const page = params.get('page');
