@@ -9,7 +9,7 @@ import { IUser } from 'app/core/user/user.model';
 import { UserService } from 'app/core/user/user.service';
 import { Carrera } from 'app/core/carrera/carrera.model';
 import { CarreraService } from 'app/core/carrera/carrera.service';
-import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
+import { ITEMS_PER_PAGE_50 } from 'app/shared/constants/pagination.constants';
 
 @Component({
   selector: 'jhi-estudiante-mgmt-update',
@@ -24,7 +24,7 @@ export class EstudianteManagementUpdateComponent implements OnInit, OnDestroy {
   carreraListSubscription?: any;
   isSaving = false;
   totalItems = 0;
-  itemsPerPage = ITEMS_PER_PAGE;
+  itemsPerPage = ITEMS_PER_PAGE_50;
   page!: number;
   predicate!: string;
   ascending!: boolean;
@@ -81,7 +81,13 @@ export class EstudianteManagementUpdateComponent implements OnInit, OnDestroy {
   }
 
   private loadAllUsers(): void {
-    this.usersListSubscription = this.userService.query().subscribe((res: HttpResponse<IUser[]>) => this.onSuccess(res.body, res.headers));
+    this.usersListSubscription = this.userService
+      .query({
+        page: this.page - 1,
+        size: this.itemsPerPage,
+        sort: ['desc'],
+      })
+      .subscribe((res: HttpResponse<IUser[]>) => this.onSuccess(res.body, res.headers));
   }
 
   private onSuccess(users: IUser[] | null, headers: HttpHeaders): void {
