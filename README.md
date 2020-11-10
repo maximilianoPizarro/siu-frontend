@@ -1,12 +1,17 @@
-# UNLaSIU
+# Plataforma Universitaria UNLa.
 
-This application was generated using JHipster 6.10.1, you can find documentation and help at [https://www.jhipster.tech/documentation-archive/v6.10.1](https://www.jhipster.tech/documentation-archive/v6.10.1).
+## Trabajo Práctico Sistemas Distribuidos 2020
+
+Se implementó el framework de desarrollo Angular 10 con servidor Express en lenguaje Node JS v12.18.2 con un setup inicial basado en buenas prácticas del generador JHipster que implementa por defecto los componentes necesarios para el login y administración de cuentas. A partir de ese setup y en relación a los mensajes entre web service se respetó el principio de acceso a los componentes por medio de Interfaces siendo Angular un framework tipado y orientado a las buenas prácticas del desarrollo de software. Podemos encontrar los conceptos del “Modelo de Objetos usados en Sistemas de Objetos Distribuidos” propuesto en el libro de Patricia Bazan ya que todos los mensajes se intercambian por medio de Publicación y Subscripción.
 
 ## Docker
 
          docker-compose up -d
-         docker tag siu-frontend mpizarro/siu-frontend:v0.0.1
-         docker push mpizarro/siu-frontend:v0.0.1
+
+## Docker release
+
+         docker tag siu-frontend mpizarro/siu-frontend:v0.1.0
+         docker push mpizarro/siu-frontend:v0.1.0
 
 ## Development
 

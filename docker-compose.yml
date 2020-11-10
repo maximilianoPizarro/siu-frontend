@@ -7,5 +7,6 @@ services:
       - NODE_ENV=prod
       - SERVER_API_ESTUDIANTES=https://estudiante-app.herokuapp.com/
       - SERVER_API_URL=https://administrador-unla.herokuapp.com/
+      - VERSION=v0.1.0
     ports:
       - '8080:9000'
