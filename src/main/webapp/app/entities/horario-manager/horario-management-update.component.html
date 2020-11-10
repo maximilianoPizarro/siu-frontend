@@ -41,7 +41,7 @@
                 <div class="form-group">
                     <label>Curso</label>
                     <select  class="form-control" multiple name="CursoIdCurso" formControlName="CursoIdCurso">
-                        <option *ngFor="let curso of cursos" [value]="curso.idCurso">{{curso.materia?.nombre}}</option>
+                        <option *ngFor="let curso of cursos" [value]="curso.idCurso">{{curso.materia?.nombre}} - {{curso.datosDocente?.nombre}} {{curso.datosDocente?.apellido}} </option>
                     </select>
                 </div>                    
 
