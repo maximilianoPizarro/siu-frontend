@@ -49,12 +49,7 @@ export class CalificacionesService {
 
   cargaNotasCursadaDesdeArchivo(file: File, idDocente: any, idMateria: any, tipoACargar: string): Observable<{}> {
     const formData: FormData = new FormData();
-    formData.append(
-      'file',
-      new Blob([file], {
-        type: 'form/multi-part',
-      })
-    );
+    formData.append('file', file);
     formData.append('idDocente', idDocente);
     formData.append('idMateria', idMateria);
     formData.append('tipoACargar', tipoACargar);

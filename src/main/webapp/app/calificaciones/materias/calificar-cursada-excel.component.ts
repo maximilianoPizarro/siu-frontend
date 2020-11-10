@@ -28,8 +28,9 @@ export class CalificarExcelComponent {
     private route: ActivatedRoute
   ) {}
 
-  private updateCalificar(): void {
-    this.file = new File([this.calificarForm.get(['file'])!.value], 'file.xlsx');
+  selectFile($event: { target: any }): void {
+    const inputValue = $event.target;
+    this.file = inputValue.files[0];
   }
 
   cancel(): void {
@@ -37,7 +38,6 @@ export class CalificarExcelComponent {
   }
 
   save(): void {
-    this.updateCalificar();
     this.calicarService
       .cargaNotasCursadaDesdeArchivo(this.file, this.currentAccount?.id, this.materia?.idMateria, 'cursada')
       .subscribe(() => {

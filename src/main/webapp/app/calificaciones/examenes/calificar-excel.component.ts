@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { CalificacionesService } from 'app/core/calificaciones/calificaciones.service';
@@ -18,7 +18,7 @@ export class CalificarExcelComponent {
   file!: File;
 
   calificarForm = this.fb.group({
-    file: [null, Validators.required],
+    file: [],
   });
 
   constructor(
@@ -28,16 +28,16 @@ export class CalificarExcelComponent {
     private route: ActivatedRoute
   ) {}
 
-  private updateCalificar(): void {
-    this.file = new File([this.calificarForm.get(['file'])!.value], 'file.xlsx');
-  }
-
   cancel(): void {
     this.activeModal.dismiss();
   }
 
+  selectFile($event: { target: any }): void {
+    const inputValue = $event.target;
+    this.file = inputValue.files[0];
+  }
+
   save(): void {
-    this.updateCalificar();
     this.calicarService
       .cargaNotasCursadaDesdeArchivo(this.file, this.currentAccount?.id, this.materia?.idMateria, 'final')
       .subscribe(() => {
