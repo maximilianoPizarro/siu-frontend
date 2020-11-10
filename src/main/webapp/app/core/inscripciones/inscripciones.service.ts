@@ -21,9 +21,12 @@ export class InscripcionesService {
     return this.http.post<ICursadaIncripcion>(`${this.resourceUrl}inscribirEstudianteCursada`, cursada);
   }
 
-  traerMateriasParaInscripcion(req?: Pagination): Observable<HttpResponse<IMaterias[]>> {
+  traerMateriasParaInscripcion(req?: Pagination, idEstudiante?: any): Observable<HttpResponse<IMaterias[]>> {
     const options = createRequestOption(req);
-    return this.http.get<IMaterias[]>(`${this.resourceUrl}traerMateriasParaInscripcion`, { params: options, observe: 'response' });
+    return this.http.get<IMaterias[]>(`${this.resourceUrl}traerMateriasParaInscripcion/${idEstudiante}`, {
+      params: options,
+      observe: 'response',
+    });
   }
 
   traerInscripcionesEstudianteCursada(req?: Pagination, idEstudiante?: any): Observable<HttpResponse<ICursadaConsulta[]>> {
@@ -46,9 +49,12 @@ export class InscripcionesService {
     return this.http.delete(`${this.resourceUrl}bajaInscripcionExamen/${idInscriptosExamen}`);
   }
 
-  traerExamenesParaInscripcion(req?: Pagination): Observable<HttpResponse<IMaterias[]>> {
+  traerExamenesParaInscripcion(req?: Pagination, idEstudiante?: any): Observable<HttpResponse<IMaterias[]>> {
     const options = createRequestOption(req);
-    return this.http.get<IMaterias[]>(`${this.resourceUrl}traerExamenesParaInscripcion`, { params: options, observe: 'response' });
+    return this.http.get<IMaterias[]>(`${this.resourceUrl}traerExamenesParaInscripcion/${idEstudiante}`, {
+      params: options,
+      observe: 'response',
+    });
   }
 
   traerInscripcionesEstudianteExamen(req?: Pagination, idEstudiante?: any): Observable<HttpResponse<IExamenConsulta[]>> {

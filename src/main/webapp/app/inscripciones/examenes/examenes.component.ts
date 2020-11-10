@@ -71,11 +71,14 @@ export class ExamenesManagementComponent implements OnInit, OnDestroy {
 
   private loadAll(): void {
     this.inscripcionesService
-      .traerExamenesParaInscripcion({
-        page: this.page - 1,
-        size: this.itemsPerPage,
-        sort: this.sort(),
-      })
+      .traerExamenesParaInscripcion(
+        {
+          page: this.page - 1,
+          size: this.itemsPerPage,
+          sort: this.sort(),
+        },
+        this.currentAccount?.id
+      )
       .subscribe((res: HttpResponse<Materias[]>) => this.onSuccess(res.body, res.headers));
   }
 

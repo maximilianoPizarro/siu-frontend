@@ -72,11 +72,14 @@ export class CursadasManagementComponent implements OnInit, OnDestroy {
 
   private loadAll(): void {
     this.inscripcionesService
-      .traerMateriasParaInscripcion({
-        page: this.page - 1,
-        size: this.itemsPerPage,
-        sort: this.sort(),
-      })
+      .traerMateriasParaInscripcion(
+        {
+          page: this.page - 1,
+          size: this.itemsPerPage,
+          sort: this.sort(),
+        },
+        this.currentAccount?.id
+      )
       .subscribe((res: HttpResponse<IMaterias[]>) => this.onSuccess(res.body, res.headers));
   }
 
