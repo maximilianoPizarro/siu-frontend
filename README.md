@@ -11,6 +11,9 @@
 Se implementó el framework de desarrollo Angular 10 con servidor Express en lenguaje Node JS v12.18.2 con un setup inicial basado en buenas prácticas del generador JHipster que implementa por defecto los componentes necesarios para el login y administración de cuentas. A partir de ese setup y en relación a los mensajes entre web service se respetó el principio de acceso a los componentes por medio de Interfaces siendo Angular un framework tipado y orientado a las buenas prácticas del desarrollo de software. Podemos encontrar los conceptos del “Modelo de Objetos usados en Sistemas de Objetos Distribuidos” propuesto en el libro "Aplicaciones, servicios
 y procesos distribuidos" de Patricia Bazan ya que todos los mensajes se intercambian por medio de Publicación y Subscripción.
 
+[Documentación](
+https://github.com/maximilianoPizarro/siu-frontend/blob/master/TP%20Web%20Service.pdf)
+
 ## Docker
 
          docker-compose up -d
