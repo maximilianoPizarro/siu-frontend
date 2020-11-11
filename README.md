@@ -1,12 +1,15 @@
 # Plataforma Universitaria UNLa.
 
+[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+
 <p align="left">
   <img src="https://raw.githubusercontent.com/maximilianoPizarro/siu-frontend/master/demo.gif" width="800" title="hover text">
 </p>  
 
 ## Trabajo Práctico Sistemas Distribuidos 2020
 
-Se implementó el framework de desarrollo Angular 10 con servidor Express en lenguaje Node JS v12.18.2 con un setup inicial basado en buenas prácticas del generador JHipster que implementa por defecto los componentes necesarios para el login y administración de cuentas. A partir de ese setup y en relación a los mensajes entre web service se respetó el principio de acceso a los componentes por medio de Interfaces siendo Angular un framework tipado y orientado a las buenas prácticas del desarrollo de software. Podemos encontrar los conceptos del “Modelo de Objetos usados en Sistemas de Objetos Distribuidos” propuesto en el libro de Patricia Bazan ya que todos los mensajes se intercambian por medio de Publicación y Subscripción.
+Se implementó el framework de desarrollo Angular 10 con servidor Express en lenguaje Node JS v12.18.2 con un setup inicial basado en buenas prácticas del generador JHipster que implementa por defecto los componentes necesarios para el login y administración de cuentas. A partir de ese setup y en relación a los mensajes entre web service se respetó el principio de acceso a los componentes por medio de Interfaces siendo Angular un framework tipado y orientado a las buenas prácticas del desarrollo de software. Podemos encontrar los conceptos del “Modelo de Objetos usados en Sistemas de Objetos Distribuidos” propuesto en el libro "Aplicaciones, servicios
+y procesos distribuidos" de Patricia Bazan ya que todos los mensajes se intercambian por medio de Publicación y Subscripción.
 
 ## Docker
 
