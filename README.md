@@ -1,6 +1,6 @@
 # Plataforma Universitaria UNLa.
 
-<p align="center">
+<p align="left">
   <img src="https://raw.githubusercontent.com/maximilianoPizarro/siu-frontend/master/demo.gif" width="800" title="hover text">
 </p>  
 
