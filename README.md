@@ -1,13 +1,13 @@
 # Plataforma Universitaria UNLa.
 
-[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)[![Open in Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.svg)](https://ssh.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https://github.com/maximilianoPizarro/siu-frontend&cloudshell_tutorial=README.md&cloudshell_workspace=/)
 
 <p align="left">
   <img src="https://raw.githubusercontent.com/maximilianoPizarro/siu-frontend/master/demo.gif" width="800" title="hover text">
 </p>  
 
 
-[![Open in Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.svg)](https://ssh.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https://github.com/maximilianoPizarro/siu-frontend&cloudshell_tutorial=README.md&cloudshell_workspace=/)
+
 
 ## Trabajo Práctico Sistemas Distribuidos 2020
 
